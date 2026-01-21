@@ -1,5 +1,5 @@
 # NEMI (React)
-
+Proyecto base de la app Nemi
 Implementación base del proyecto NEMI en React (opción **A: UI simple sin librerías extra**).
 
 ## Requisitos

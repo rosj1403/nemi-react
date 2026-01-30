@@ -7,17 +7,20 @@ import { colors, spacing, typography, transitions, borderRadius } from '../style
 /**
  * Página de Demostración de Componentes
  * Muestra todos los componentes del sistema de diseño en acción
- * Sigue 100% el documento de especificaciones de Nemi
  */
 
 const Container = styled.div`
   min-height: 100vh;
   background: ${colors.background.light};
-  padding: ${spacing.lg} ${spacing.md};
+  padding: ${spacing.lg};
+`;
 
-  @media (max-width: 600px) {
-    padding: ${spacing.md};
-  }
+const NavBar = styled.nav`
+  background: white;
+  padding: ${spacing.md} ${spacing.lg};
+  border-bottom: 2px solid ${colors.primary.menta};
+  margin-bottom: ${spacing.xl};
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 `;
 
 const Header = styled.header`
@@ -28,10 +31,8 @@ const Header = styled.header`
   h1 {
     font-family: ${typography.families.display};
     font-size: ${typography.sizes.h1};
-    font-weight: ${typography.weights.bold};
     color: ${colors.primary.menta};
     margin: 0 0 ${spacing.md} 0;
-    letter-spacing: ${typography.letterSpacing.h1};
   }
   
   p {
@@ -39,7 +40,6 @@ const Header = styled.header`
     font-size: ${typography.sizes.body1};
     color: ${colors.text.secondary};
     margin: 0;
-    line-height: ${typography.lineHeights.body1};
   }
 `;
 
@@ -50,12 +50,16 @@ const Section = styled.section`
   h2 {
     font-family: ${typography.families.display};
     font-size: ${typography.sizes.h2};
-    font-weight: ${typography.weights.semibold};
     color: ${colors.text.primary};
     margin: 0 0 ${spacing.lg} 0;
     padding-bottom: ${spacing.md};
     border-bottom: 3px solid ${colors.primary.menta};
-    letter-spacing: ${typography.letterSpacing.h2};
+  }
+  
+  p {
+    font-family: ${typography.families.body};
+    color: ${colors.text.secondary};
+    margin: 0 0 ${spacing.lg} 0;
   }
 `;
 
@@ -63,11 +67,6 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: ${spacing.lg};
-  
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
-    gap: ${spacing.md};
-  }
 `;
 
 const DemoBox = styled.div`
@@ -75,11 +74,11 @@ const DemoBox = styled.div`
   padding: ${spacing.lg};
   border-radius: ${borderRadius.lg};
   border: 1px solid ${colors.border};
-  box-shadow: ${spacing.xs} ${spacing.xs} ${spacing.md} rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: ${transitions.normal};
-
+  
   &:hover {
-    box-shadow: 0 ${spacing.md} ${spacing.lg} rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   }
 `;
 
@@ -91,7 +90,6 @@ const Label = styled.label`
   margin-bottom: ${spacing.md};
   text-transform: uppercase;
   font-weight: ${typography.weights.semibold};
-  letter-spacing: 0.5px;
 `;
 
 const DemoItem = styled.div`
@@ -102,19 +100,7 @@ const DemoItem = styled.div`
   }
 `;
 
-const Divider = styled.hr`
-  margin: ${spacing.lg} 0;
-  border: none;
-  border-top: 1px solid ${colors.border};
-`;
-
 const ButtonGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${spacing.md};
-`;
-
-const StatusGrid = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${spacing.md};
@@ -122,12 +108,8 @@ const StatusGrid = styled.div`
 
 const ColorGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: ${spacing.md};
-  
-  @media (max-width: 600px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
 `;
 
 const ColorBox = styled.div`
@@ -135,44 +117,14 @@ const ColorBox = styled.div`
   border-radius: ${borderRadius.md};
   text-align: center;
   color: white;
-  font-family: ${typography.families.body};
-  font-weight: ${typography.weights.bold};
-  font-size: ${typography.sizes.body2};
+  font-weight: bold;
+  font-size: 12px;
   
-  p {
-    margin: ${spacing.sm} 0 0 0;
-    font-size: ${typography.sizes.caption};
+  small {
+    display: block;
+    margin-top: ${spacing.sm};
     opacity: 0.9;
-  }
-`;
-
-const TypographyExample = styled.div`
-  margin: ${spacing.lg} 0;
-  
-  & > div {
-    margin-bottom: ${spacing.md};
-  }
-`;
-
-const NavBar = styled.nav`
-  background: white;
-  padding: ${spacing.md} ${spacing.lg};
-  border-bottom: 1px solid ${colors.border};
-  margin-bottom: ${spacing.xl};
-  display: flex;
-  align-items: center;
-  gap: ${spacing.lg};
-  
-  a {
-    color: ${colors.text.primary};
-    text-decoration: none;
-    font-family: ${typography.families.body};
-    font-weight: ${typography.weights.semibold};
-    transition: ${transitions.normal};
-    
-    &:hover {
-      color: ${colors.primary.menta};
-    }
+    font-size: 10px;
   }
 `;
 
@@ -180,89 +132,60 @@ const Footer = styled.footer`
   text-align: center;
   padding: ${spacing.xxl} ${spacing.lg};
   color: ${colors.text.secondary};
-  font-family: ${typography.families.body};
-  font-size: ${typography.sizes.caption};
-  border-top: 1px solid ${colors.border};
   margin-top: ${spacing.xxl};
-  background: white;
+  border-top: 1px solid ${colors.border};
 `;
 
 export const ComponentShowcase = () => {
-  const handleServiceCardClick = (name) => {
-    console.log('Clicked on:', name);
-  };
-
-  const handleFavorite = (name) => {
-    console.log('Favorited:', name);
-  };
-
   return (
     <>
       <NavBar>
         <strong style={{ color: colors.primary.menta, fontSize: '20px' }}>🍔 Nemi</strong>
-        <span style={{ marginLeft: 'auto', fontSize: '12px', color: colors.text.secondary }}>
-          Sistema de Diseño v1.0
-        </span>
       </NavBar>
 
       <Container>
         <Header>
           <h1>Sistema de Diseño Nemi</h1>
-          <p>Documentación de componentes, tipografía, colores y espaciado</p>
+          <p>Componentes, tipografía, colores y espaciado del proyecto</p>
         </Header>
 
         {/* BOTONES */}
         <Section>
-          <h2>1. Botones del Sistema</h2>
+          <h2>1. Botones</h2>
           <DemoBox>
             <ButtonGroup>
               <DemoItem>
-                <Label>Variante Primary - Verde Menta</Label>
+                <Label>Primary - Verde Menta</Label>
                 <ButtonPrimary variant="primary" fullWidth>
                   Solicitar Servicio
                 </ButtonPrimary>
               </DemoItem>
               <DemoItem>
-                <Label>Variante Danger - Rojo</Label>
+                <Label>Danger - Rojo</Label>
                 <ButtonPrimary variant="danger" fullWidth>
-                  Rechazar Solicitud
+                  Rechazar
                 </ButtonPrimary>
               </DemoItem>
               <DemoItem>
-                <Label>Variante Secondary - Gris</Label>
+                <Label>Secondary - Gris</Label>
                 <ButtonPrimary variant="secondary" fullWidth>
                   Cancelar
                 </ButtonPrimary>
               </DemoItem>
               <DemoItem>
-                <Label>Estado Deshabilitado</Label>
+                <Label>Deshabilitado</Label>
                 <ButtonPrimary disabled fullWidth>
                   No disponible
                 </ButtonPrimary>
-              </DemoItem>
-              <Divider />
-              <DemoItem>
-                <Label>Tamaño Small</Label>
-                <ButtonPrimary size="small">Botón pequeño</ButtonPrimary>
-              </DemoItem>
-              <DemoItem>
-                <Label>Tamaño Medium (por defecto)</Label>
-                <ButtonPrimary size="medium" fullWidth>Botón mediano</ButtonPrimary>
-              </DemoItem>
-              <DemoItem>
-                <Label>Tamaño Large</Label>
-                <ButtonPrimary size="large" fullWidth>Botón grande</ButtonPrimary>
               </DemoItem>
             </ButtonGroup>
           </DemoBox>
         </Section>
 
-        {/* TARJETAS DE SERVICIO */}
+        {/* TARJETAS */}
         <Section>
           <h2>2. Tarjetas de Servicio</h2>
-          <p style={{ fontFamily: typography.families.body, color: colors.text.secondary, marginBottom: spacing.lg }}>
-            Componente principal para mostrar proveedores con información detallada: imagen, nombre, especialidad, rating, distancia y precio.
-          </p>
+          <p>Componente principal para proveedores con imagen, rating, distancia y precio.</p>
           <Grid>
             <ServiceCard
               image="https://images.unsplash.com/photo-1555939594-58d7cb561d1b?w=400&h=225&fit=crop"
@@ -273,8 +196,6 @@ export const ComponentShowcase = () => {
               distance="2.5 km"
               priceRange="$200-400"
               badge="Verificado"
-              onClick={() => handleServiceCardClick('Don Carlos')}
-              onFavorite={handleFavorite}
             />
             <ServiceCard
               image="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=225&fit=crop"
@@ -285,8 +206,6 @@ export const ComponentShowcase = () => {
               distance="3.8 km"
               priceRange="$300-500"
               badge="Popular"
-              onClick={() => handleServiceCardClick('La Mexicana')}
-              onFavorite={handleFavorite}
               isFavorite={true}
             />
             <ServiceCard
@@ -297,190 +216,64 @@ export const ComponentShowcase = () => {
               reviewCount={15}
               distance="1.2 km"
               priceRange="$150-250"
-              onClick={() => handleServiceCardClick('Express')}
-              onFavorite={handleFavorite}
-            />
-            <ServiceCard
-              name="Sin imagen (placeholder)"
-              specialty="Tacos de canasta"
-              rating={5.0}
-              reviewCount={5}
-              distance="0.5 km"
-              priceRange="$180-280"
-              onClick={() => handleServiceCardClick('Sin imagen')}
-              onFavorite={handleFavorite}
             />
           </Grid>
         </Section>
 
-        {/* ESTADOS DE SOLICITUD */}
+        {/* ESTADOS */}
         <Section>
           <h2>3. Estados de Solicitud</h2>
-          <p style={{ fontFamily: typography.families.body, color: colors.text.secondary, marginBottom: spacing.lg }}>
-            Badges semánticos para indicar el estado de las solicitudes de servicio. Incluyen icono y color distintivo.
-          </p>
+          <p>Badges semánticos para indicar el estado de las solicitudes.</p>
           <DemoBox>
-            <StatusGrid>
-              <DemoItem>
-                <Label>Estado: Pendiente</Label>
-                <RequestStatus status="pending" size="medium" />
-              </DemoItem>
-              <DemoItem>
-                <Label>Estado: Aceptada</Label>
-                <RequestStatus status="accepted" size="medium" />
-              </DemoItem>
-              <DemoItem>
-                <Label>Estado: Rechazada</Label>
-                <RequestStatus status="rejected" size="medium" />
-              </DemoItem>
-              <DemoItem>
-                <Label>Estado: Completada</Label>
-                <RequestStatus status="completed" size="medium" />
-              </DemoItem>
-              <Divider />
-              <DemoItem>
-                <Label>Tamaño Small</Label>
-                <RequestStatus status="pending" size="small" />
-              </DemoItem>
-              <DemoItem>
-                <Label>Tamaño Medium</Label>
-                <RequestStatus status="accepted" size="medium" />
-              </DemoItem>
-              <DemoItem>
-                <Label>Tamaño Large</Label>
-                <RequestStatus status="rejected" size="large" />
-              </DemoItem>
-              <Divider />
-              <DemoItem>
-                <Label>Sin icono</Label>
-                <RequestStatus status="pending" showIcon={false} />
-              </DemoItem>
-              <DemoItem>
-                <Label>Texto personalizado</Label>
-                <RequestStatus status="accepted" label="✓ Confirmada" showIcon={false} />
-              </DemoItem>
-            </StatusGrid>
+            <DemoItem>
+              <Label>Pendiente</Label>
+              <RequestStatus status="pending" size="medium" />
+            </DemoItem>
+            <DemoItem>
+              <Label>Aceptada</Label>
+              <RequestStatus status="accepted" size="medium" />
+            </DemoItem>
+            <DemoItem>
+              <Label>Rechazada</Label>
+              <RequestStatus status="rejected" size="medium" />
+            </DemoItem>
+            <DemoItem>
+              <Label>Completada</Label>
+              <RequestStatus status="completed" size="medium" />
+            </DemoItem>
           </DemoBox>
         </Section>
 
-        {/* PALETA DE COLORES */}
+        {/* COLORES */}
         <Section>
           <h2>4. Paleta de Colores</h2>
-          <p style={{ fontFamily: typography.families.body, color: colors.text.secondary, marginBottom: spacing.lg }}>
-            Colores validados WCAG 2.1 Level AA. Cumplen requisitos de accesibilidad y contraste.
-          </p>
+          <p>Colores validados WCAG 2.1 Level AA para accesibilidad.</p>
           <ColorGrid>
             <ColorBox style={{ backgroundColor: colors.primary.menta }}>
-              Primario<p>{colors.primary.menta}</p>
-            </ColorBox>
-            <ColorBox style={{ backgroundColor: colors.primary.darkGray }}>
-              Texto<p>{colors.primary.darkGray}</p>
+              Primario<small>{colors.primary.menta}</small>
             </ColorBox>
             <ColorBox style={{ backgroundColor: colors.secondary.red }}>
-              Acción<p>{colors.secondary.red}</p>
+              Acción<small>{colors.secondary.red}</small>
             </ColorBox>
-            <ColorBox style={{ backgroundColor: colors.secondary.yellow }}>
-              Resaltado<p>{colors.secondary.yellow}</p>
+            <ColorBox style={{ backgroundColor: colors.secondary.yellow, color: colors.text.primary }}>
+              Resaltado<small>{colors.secondary.yellow}</small>
             </ColorBox>
             <ColorBox style={{ backgroundColor: colors.semantic.success }}>
-              Éxito<p>{colors.semantic.success}</p>
+              Éxito<small>{colors.semantic.success}</small>
             </ColorBox>
             <ColorBox style={{ backgroundColor: colors.semantic.error }}>
-              Error<p>{colors.semantic.error}</p>
+              Error<small>{colors.semantic.error}</small>
             </ColorBox>
             <ColorBox style={{ backgroundColor: colors.semantic.info }}>
-              Info<p>{colors.semantic.info}</p>
-            </ColorBox>
-            <ColorBox style={{ backgroundColor: colors.secondary.lightGray, color: colors.text.primary }}>
-              Fondo<p>{colors.secondary.lightGray}</p>
+              Info<small>{colors.semantic.info}</small>
             </ColorBox>
           </ColorGrid>
-        </Section>
-
-        {/* TIPOGRAFÍA */}
-        <Section>
-          <h2>5. Tipografía</h2>
-          <p style={{ fontFamily: typography.families.body, color: colors.text.secondary, marginBottom: spacing.lg }}>
-            Escala modular Major Third (1.25). Familias: Poppins (display) e Inter (body).
-          </p>
-          <DemoBox>
-            <TypographyExample>
-              <div>
-                <h1 style={{ ...typography.styles.h1, margin: 0 }}>H1 - Título Principal (39px Bold)</h1>
-                <p style={{ ...typography.styles.caption, margin: `${spacing.sm} 0 0 0` }}>Poppins Bold • Letter-spacing: -0.02em</p>
-              </div>
-              <div>
-                <h2 style={{ ...typography.styles.h2, margin: 0 }}>H2 - Encabezado de Sección (31px Semibold)</h2>
-                <p style={{ ...typography.styles.caption, margin: `${spacing.sm} 0 0 0` }}>Poppins Semibold • Letter-spacing: -0.01em</p>
-              </div>
-              <div>
-                <h3 style={{ ...typography.styles.h3, margin: 0 }}>H3 - Subtítulo (25px Medium)</h3>
-                <p style={{ ...typography.styles.caption, margin: `${spacing.sm} 0 0 0` }}>Poppins Medium • Letter-spacing: 0em</p>
-              </div>
-              <div>
-                <p style={{ ...typography.styles.body1, margin: 0 }}>Cuerpo 1 - Texto destacado (20px Regular)</p>
-                <p style={{ ...typography.styles.caption, margin: `${spacing.sm} 0 0 0` }}>Inter Regular • Letter-spacing: 0.01em</p>
-              </div>
-              <div>
-                <p style={{ ...typography.styles.body2, margin: 0 }}>Cuerpo 2 - Texto general (16px Regular)</p>
-                <p style={{ ...typography.styles.caption, margin: `${spacing.sm} 0 0 0` }}>Inter Regular • Line-height: 1.5</p>
-              </div>
-              <div>
-                <p style={{ ...typography.styles.caption, margin: 0 }}>Caption - Metadatos (13px Regular)</p>
-                <p style={{ ...typography.styles.caption, margin: `${spacing.sm} 0 0 0` }}>Inter Regular • Letter-spacing: 0.02em</p>
-              </div>
-            </TypographyExample>
-          </DemoBox>
-        </Section>
-
-        {/* ESPACIADO */}
-        <Section>
-          <h2>6. Sistema de Espaciado</h2>
-          <p style={{ fontFamily: typography.families.body, color: colors.text.secondary, marginBottom: spacing.lg }}>
-            Basado en unidad de 8pt (8pt Grid System). Proporciona consistencia y armonía visual.
-          </p>
-          <DemoBox>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: spacing.lg }}>
-              <div>
-                <Label>Espacios Base</Label>
-                <div style={{ margin: `${spacing.md} 0` }}>
-                  <small>xs: 4px</small>
-                </div>
-                <div style={{ margin: `${spacing.md} 0` }}>
-                  <small>sm: 8px</small>
-                </div>
-                <div style={{ margin: `${spacing.md} 0` }}>
-                  <small>md: 16px</small>
-                </div>
-                <div style={{ margin: `${spacing.md} 0` }}>
-                  <small>lg: 24px</small>
-                </div>
-                <div style={{ margin: `${spacing.md} 0` }}>
-                  <small>xl: 32px</small>
-                </div>
-                <div style={{ margin: `${spacing.md} 0` }}>
-                  <small>xxl: 40px</small>
-                </div>
-              </div>
-              <div>
-                <Label>Uso en Componentes</Label>
-                <small style={{ color: colors.text.secondary }}>
-                  • Padding en tarjetas: {spacing.lg}<br/>
-                  • Margin entre secciones: {spacing.xxl}<br/>
-                  • Gap en grillas: {spacing.lg}<br/>
-                  • Padding en botones: {spacing.md}<br/>
-                  • Border-radius: 8px - 12px<br/>
-                </small>
-              </div>
-            </div>
-          </DemoBox>
         </Section>
 
         <Footer>
           <p>
             🎨 <strong>Sistema de Diseño Nemi v1.0</strong><br/>
-            Especificaciones completas según el documento de diseño.<br/>
-            Accesibilidad WCAG 2.1 Level AA • Mobile-First Responsive
+            Accesibilidad WCAG 2.1 • Mobile-First Responsive
           </p>
         </Footer>
       </Container>

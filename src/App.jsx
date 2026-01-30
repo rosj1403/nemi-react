@@ -3,6 +3,8 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import ProtectedRoute from './components/ProtectedRoute'
 
+import ComponentShowcase from './pages/ComponentShowcase'
+
 import Welcome from './pages/auth/Welcome'
 import Login from './pages/auth/Login'
 import RegisterClient from './pages/auth/RegisterClient'
@@ -25,6 +27,7 @@ export default function App() {
   return (
     <>
       <Routes>
+        <Route path="/components" element={<ComponentShowcase />} />
         <Route path="/" element={<Welcome />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register/client" element={<RegisterClient />} />

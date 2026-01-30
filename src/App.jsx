@@ -4,6 +4,7 @@ import NavBar from './components/NavBar'
 import ProtectedRoute from './components/ProtectedRoute'
 
 import ComponentShowcase from './pages/ComponentShowcase'
+import ClientHomeNew from './pages/client/ClientHomeNew'
 
 import Welcome from './pages/auth/Welcome'
 import Login from './pages/auth/Login'
@@ -28,6 +29,7 @@ export default function App() {
     <>
       <Routes>
         <Route path="/components" element={<ComponentShowcase />} />
+        <Route path="/c/home/new" element={<ClientHomeNew />} />
         <Route path="/" element={<Welcome />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register/client" element={<RegisterClient />} />

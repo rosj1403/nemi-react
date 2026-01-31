@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Sitemap name="NEMI Sistema Integral" version="3.0">
+    <Root node="Landing Page">
+        <Description>Bienvenida a los usuarios a la aplicación NEMI</Description>
+        
+        <Section id="auth" name="Autenticación">
+            <Function id="login">Iniciar Sesión</Function>
+            <Function id="register-client">Registro de cliente (Usuario)</Function>
+            <Function id="register-provider">Registro de proveedor (Taquero)</Function>
+            <Function id="recovery">Recuperación de contraseña</Function>
+        </Section>
+
+        <Section id="client-ui" name="Interfaz de Clientes">
+            
+            <Subsection id="home-client" name="Home Cliente (Dashboard)">
+                <Feature id="map-search">
+                    <Title>Buscador y Mapa Interactivo</Title>
+                    <Components>Geolocalización, Búsqueda, Filtros, Placeholder de mapa</Components>
+                </Feature>
+                <Feature id="provider-list">Lista de Proveedores (Cards de taqueros cercanos)</Feature>
+                <Feature id="request-forms">Formularios de solicitudes (Pre-llenado por cliente)</Feature>
+                <Feature id="advanced-filters">Filtros (Precio, Tipo de carne, Valoración)</Feature>
+                <Feature id="requests-tray">Requests (Bandeja con estados en botones)</Feature>
+                <Feature id="favorites">Favoritos (Historial de servicios destacados)</Feature>
+            </Subsection>
+
+            <Subsection id="provider-profile" name="Perfil del Proveedor">
+                <Description>Detalles, especialidades y fotos del taquero</Description>
+                <Feature id="request-board">
+                    <Title>Tablero de solicitudes</Title>
+                    <Configuration>Fecha, Hora, Número de personas</Configuration>
+                </Feature>
+                <Feature id="order-admin">
+                    <Title>Administrador de pedidos</Title>
+                    <Actions>Aceptar/Rechazar con motivo</Actions>
+                </Feature>
+                <Feature id="business-management">Gestión de negocio</Feature>
+            </Subsection>
+            
+        </Section>
+    </Root>
+
+    <DesignSystem>
+        <PrimaryColor hex="#008894">Mint Green</PrimaryColor> [cite: 168]
+        <SecondaryColor hex="#D63031">Passion Red (CTA)</SecondaryColor> [cite: 185]
+        <Typography>
+            <Headings font="Poppins" /> [cite: 205]
+            <Body font="Inter" /> [cite: 208]
+        </Typography>
+    </DesignSystem>
+</Sitemap>

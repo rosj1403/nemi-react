@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitemap - NEMI Sistema Integral</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --mint-green: #008894;
+            --dark-gray: #2D3436;
+            --passion-red: #D63031;
+            --sunny-yellow: #FFD54F;
+            --neutral-surface: #F5F5F5;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--neutral-surface);
+            color: var(--dark-gray);
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--mint-green);
+            text-align: center;
+            border-bottom: 2px solid var(--neutral-surface);
+            padding-bottom: 20px;
+        }
+
+        .sitemap-root {
+            font-weight: 600;
+            color: var(--passion-red);
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .section-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+            border-left: 2px solid var(--mint-green);
+        }
+
+        li {
+            margin: 15px 0;
+            position: relative;
+        }
+
+        li::before {
+            content: "—";
+            position: absolute;
+            left: -15px;
+            color: var(--mint-green);
+        }
+
+        .category {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-gray);
+            font-size: 1.1rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--sunny-yellow);
+            color: var(--dark-gray);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        .feature-detail {
+            display: block;
+            font-size: 0.85rem;
+            color: #555;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Mapa del Sitio - NEMI v3.0</h1>
+    
+    <div class="sitemap-root">NEMI (Inicio / Landing Page) [cite: 300]</div>
+    <p class="section-desc">Punto de entrada común antes de identificar el rol del usuario. [cite: 299]</p>
+
+    <ul>
+        <li>
+            <span class="category">Autenticación</span> 
+            <ul>
+                <li>Iniciar Sesión (Login) [cite: 302]</li>
+                <li>Registro de Cliente <span class="badge">Usuario</span> </li>
+                <li>Registro de Proveedor <span class="badge">Taquero</span> </li>
+                <li>Recuperación de Contraseña [cite: 305]</li>
+            </ul>
+        </li>
+
+        <li>
+            <span class="category">Interfaz de Clientes</span> 
+            <span class="feature-detail">Enfocada en el flujo de búsqueda y contratación. [cite: 307]</span>
+            
+            <ul>
+                <li>
+                    <strong>Home Cliente (Dashboard)</strong> [cite: 308]
+                    <ul>
+                        <li>Buscador y Mapa Interactivo <span class="feature-detail">Geolocalización, búsqueda, filtros y placeholder de mapa. </span></li>
+                        <li>Lista de Proveedores <span class="feature-detail">Cards o perfiles de taqueros cercanos. [cite: 310]</span></li>
+                        <li>Formularios de solicitudes <span class="feature-detail">El cliente llena el formulario antes de entregarlo. [cite: 311]</span></li>
+                        <li>Filtros Avanzados <span class="feature-detail">Precio, tipo de carne y valoración. [cite: 312]</span></li>
+                        <li>Requests (Solicitudes) <span class="feature-detail">Bandeja de solicitudes y sus estados en botones. [cite: 313]</span></li>
+                        <li>Favoritos <span class="feature-detail">Perfiles marcados tras realizar su servicio. [cite: 314]</span></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <strong>Perfil del Proveedor</strong> [cite: 315]
+                    <span class="feature-detail">Detalles, especialidades y fotos del taquero. [cite: 315]</span>
+                    <ul>
+                        <li>Tablero de solicitudes <span class="feature-detail">Configuración de fecha, hora y número de personas. [cite: 316]</span></li>
+                        <li>Administrador de pedidos <span class="feature-detail">Aceptar/Rechazar solicitudes con motivo. [cite: 317]</span></li>
+                        <li>Gestión de negocio [cite: 318]</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <footer style="margin-top: 40px; text-align: center; font-size: 0.8rem; color: #999;">
+        Nemi Design System v3.0 | Nivel de acceso e identidad público 
+    </footer>
+</div>
+
+</body>
+</html>

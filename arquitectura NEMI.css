@@ -1,0 +1,28 @@
+NEMI
+│
+├── Home
+│   ├── Buscar Taqueros
+│   ├── Soy Proveedor
+│   └── Ya tengo cuenta
+│
+├── Autenticación
+│   ├── Login
+│   ├── Registro Cliente
+│   ├── Registro Proveedor
+│   └── Recuperar Contraseña
+│
+├── Cliente
+│   ├── Inicio Listado de Taqueros
+│   │   └── Detalle Taquero
+│   ├── Solicitudes
+│   │   └── Historial
+│   └── Favoritos
+│
+└── Proveedor
+    ├── Inicio / Resumen
+    │   ├── Solicitudes Pendientes
+    │   ├── Solicitudes Aceptadas
+    │   └── Solicitudes Completadas
+    ├── Solicitudes
+    └── Mi Negocio
+        └── Editar Información

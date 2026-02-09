@@ -1,6 +1,133 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Container, Page, Spacer, Title, Label, Input, Button, Subtitle } from '../../components/ui'
+import styled from 'styled-components'
+import { colors, spacing, borderRadius } from '../../styles/designTokens'
+
+const RecoverPage = styled.div`
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: ${spacing.lg} ${spacing.md};
+`
+
+const Logo = styled.div`
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: ${colors.primary};
+  margin-bottom: ${spacing.lg};
+  text-align: center;
+`
+
+const CardContainer = styled.div`
+  width: 100%;
+  max-width: 500px;
+  background: white;
+  padding: ${spacing.lg};
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+`
+
+const Title = styled.h1`
+  font-size: 1.95rem;
+  font-weight: 700;
+  margin: 0 0 ${spacing.md} 0;
+  color: #000;
+`
+
+const Description = styled.p`
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0 0 ${spacing.lg} 0;
+  line-height: 1.6;
+`
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: ${spacing.md};
+`
+
+const FieldGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${spacing.xs};
+`
+
+const Label = styled.label`
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333;
+`
+
+const Input = styled.input`
+  padding: ${spacing.md};
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: ${colors.primary};
+    box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.1);
+  }
+
+  &::placeholder {
+    color: #bbb;
+  }
+`
+
+const SubmitButton = styled.button`
+  padding: ${spacing.md} ${spacing.lg};
+  background: ${colors.primary};
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: ${spacing.md};
+
+  &:hover:not(:disabled) {
+    background: #00a380;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 184, 148, 0.3);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+`
+
+const BackLink = styled(Link)`
+  color: ${colors.primary};
+  text-decoration: none;
+  font-weight: 600;
+  text-align: center;
+  margin-top: ${spacing.lg};
+  display: block;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`
+
+const SuccessMessage = styled.div`
+  background: rgba(0, 184, 148, 0.1);
+  border: 1px solid ${colors.primary};
+  color: ${colors.primary};
+  padding: ${spacing.md};
+  border-radius: 12px;
+  font-size: 0.95rem;
+  margin-top: ${spacing.md};
+  text-align: center;
+`
 
 export default function RecoverPassword() {
   const [email, setEmail] = useState('')
@@ -8,38 +135,43 @@ export default function RecoverPassword() {
 
   function onSubmit(e) {
     e.preventDefault()
-    // Mock: solo muestra mensaje
     setSent(true)
   }
 
   return (
-    <Page>
-      <Container>
-        <Spacer h={18} />
-        <Card>
-          <Title>Recuperación de contraseña</Title>
-          <Subtitle>Simulación: en una app real aquí se enviaría un correo con enlace de restablecimiento.</Subtitle>
+    <RecoverPage>
+      <Logo>NEMI</Logo>
 
-          <form onSubmit={onSubmit}>
-            <Label htmlFor="email">Correo</Label>
-            <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} required />
-            <Spacer h={14} />
-            <Button type="submit" style={{ width: '100%' }}>
-              Enviar enlace
-            </Button>
-          </form>
+      <CardContainer>
+        <Title>Recuperar Contraseña</Title>
+        <Description>
+          Ingresa tu correo electrónico y te enviaremos un enlace para restablecer contraseña
+        </Description>
 
-          {sent ? (
-            <>
-              <Spacer h={12} />
-              <Subtitle>Listo: si el correo existiera, recibirías instrucciones.</Subtitle>
-            </>
-          ) : null}
+        {!sent ? (
+          <Form onSubmit={onSubmit}>
+            <FieldGroup>
+              <Label htmlFor="email">Correo Electrónico</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="tu@email.com"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                required
+              />
+            </FieldGroup>
 
-          <Spacer h={12} />
-          <Link to="/login">Volver</Link>
-        </Card>
-      </Container>
-    </Page>
+            <SubmitButton type="submit">Iniciar Sesión</SubmitButton>
+          </Form>
+        ) : (
+          <SuccessMessage>
+            ✓ Si el correo existe, recibirás instrucciones para restablecer tu contraseña.
+          </SuccessMessage>
+        )}
+
+        <BackLink to="/login">Volver a Iniciar Sesión</BackLink>
+      </CardContainer>
+    </RecoverPage>
   )
 }

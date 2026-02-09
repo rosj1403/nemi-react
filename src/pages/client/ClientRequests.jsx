@@ -1,12 +1,146 @@
 import React, { useEffect, useState } from 'react'
+import { ClipboardList, Heart, Home, User } from 'lucide-react'
+import styled from 'styled-components'
 import { api } from '../../lib/mockApi'
 import { useAuth } from '../../context/AuthContext'
-import { Card, Container, Page, Spacer, Title, Row, Chip, Muted, Button } from '../../components/ui'
+import { colors, spacing } from '../../styles/designTokens'
+
+const Container = styled.div`
+  min-height: 100vh;
+  background: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+`
+
+const TopBar = styled.div`
+  background: white;
+  padding: ${spacing.md} ${spacing.lg};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+`
+
+const Logo = styled.div`
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: ${colors.primary};
+`
+
+const UserProfile = styled.div`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: ${colors.primary};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 600;
+`
+
+const ContentArea = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: ${spacing.xl};
+`
+
+const EmptyState = styled.div`
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: ${spacing.lg};
+`
+
+const Icon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+
+  svg {
+    width: 64px;
+    height: 64px;
+  }
+`
+
+const Title = styled.h1`
+  font-size: 1.95rem;
+  font-weight: 700;
+  margin: 0;
+  color: #000;
+`
+
+const Subtitle = styled.p`
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.6;
+`
+
+const RequestCard = styled.div`
+  background: white;
+  padding: ${spacing.lg};
+  border-radius: 12px;
+  margin-bottom: ${spacing.md};
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+`
+
+const RequestsContainer = styled.div`
+  max-width: 600px;
+  width: 100%;
+  padding-bottom: 80px;
+
+  @media (min-width: 769px) {
+    padding-bottom: ${spacing.lg};
+  }
+`
+
+/* Mobile Footer Navigation */
+const MobileFooter = styled.nav`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 60px;
+  z-index: 100;
+
+  @media (min-width: 769px) {
+    display: none;
+  }
+`
+
+const FooterIcon = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: ${spacing.xs};
+  color: ${props => (props.$active ? colors.primary : '#999')};
+  transition: color 0.2s ease;
+  font-size: 0.7rem;
+
+  svg {
+    font-size: 1.5rem;
+  }
+`
 
 export default function ClientRequests() {
   const { user } = useAuth()
   const [requests, setRequests] = useState([])
   const [loading, setLoading] = useState(false)
+  const [activeTab, setActiveTab] = useState('requests')
 
   async function load() {
     setLoading(true)
@@ -18,44 +152,80 @@ export default function ClientRequests() {
     }
   }
 
-  useEffect(() => { load() }, []) // eslint-disable-line
+  useEffect(() => {
+    load()
+  }, []) // eslint-disable-line
 
   return (
-    <Page>
-      <Container>
-        <Spacer h={10} />
-        <Title>Mis solicitudes</Title>
-        <Spacer h={10} />
+    <Container>
+      {/* TOP BAR */}
+      <TopBar>
+        <Logo>NEMI</Logo>
+        <UserProfile>
+          <User size={18} />
+        </UserProfile>
+      </TopBar>
 
-        <Button variant="outline" onClick={load} disabled={loading} style={{ width: '100%' }}>
-          {loading ? 'Actualizando…' : 'Actualizar'}
-        </Button>
-        <Spacer h={10} />
-
-        {requests.map(r => (
-          <Card key={r.id}>
-            <Row style={{ justifyContent: 'space-between', alignItems: 'center' }}>
-              <div style={{ fontWeight: 800 }}>{r.providerName}</div>
-              <Chip>{r.status}</Chip>
-            </Row>
-            <Spacer h={8} />
-            <Muted><b>Fecha:</b> {r.date} · <b>Hora:</b> {r.time}</Muted>
-            <Muted><b>Ubicación:</b> {r.address}</Muted>
-            {r.notes ? <Muted><b>Notas:</b> {r.notes}</Muted> : null}
-            {r.status === 'Rechazado' && r.rejectionReason ? (
-              <Muted><b>Motivo:</b> {r.rejectionReason}</Muted>
-            ) : null}
-            <Spacer h={8} />
-            <Muted style={{ fontSize: '0.9rem' }}>Creada: {new Date(r.createdAt).toLocaleString()}</Muted>
-          </Card>
-        ))}
-
+      {/* CONTENT */}
+      <ContentArea>
         {requests.length === 0 ? (
-          <Card><Muted>Aún no tienes solicitudes.</Muted></Card>
-        ) : null}
+          <EmptyState>
+            <Icon>
+              <ClipboardList />
+            </Icon>
+            <Title>Mis solicitudes</Title>
+            <Subtitle>Aquí verás el historial de tus solicitudes</Subtitle>
+          </EmptyState>
+        ) : (
+          <RequestsContainer>
+            {requests.map(r => (
+              <RequestCard key={r.id}>
+                <div style={{ fontWeight: 800, marginBottom: '8px' }}>
+                  {r.providerName}
+                </div>
+                <div style={{ fontSize: '0.85rem', color: colors.primary, marginBottom: '8px' }}>
+                  {r.status}
+                </div>
+                <div style={{ fontSize: '0.9rem', color: '#666', marginBottom: '4px' }}>
+                  <b>Fecha:</b> {r.date} · <b>Hora:</b> {r.time}
+                </div>
+                <div style={{ fontSize: '0.9rem', color: '#666', marginBottom: '4px' }}>
+                  <b>Ubicación:</b> {r.address}
+                </div>
+                {r.notes && (
+                  <div style={{ fontSize: '0.9rem', color: '#666', marginBottom: '4px' }}>
+                    <b>Notas:</b> {r.notes}
+                  </div>
+                )}
+                {r.status === 'Rechazado' && r.rejectionReason && (
+                  <div style={{ fontSize: '0.9rem', color: '#666' }}>
+                    <b>Motivo:</b> {r.rejectionReason}
+                  </div>
+                )}
+                <div style={{ fontSize: '0.8rem', color: '#999', marginTop: '8px' }}>
+                  Creada: {new Date(r.createdAt).toLocaleString()}
+                </div>
+              </RequestCard>
+            ))}
+          </RequestsContainer>
+        )}
+      </ContentArea>
 
-        <Spacer h={30} />
-      </Container>
-    </Page>
+      {/* MOBILE FOOTER */}
+      <MobileFooter>
+        <FooterIcon $active={activeTab === 'home'} onClick={() => setActiveTab('home')}>
+          <Home size={22} />
+          <div>Inicio</div>
+        </FooterIcon>
+        <FooterIcon $active={activeTab === 'requests'} onClick={() => setActiveTab('requests')}>
+          <ClipboardList size={22} />
+          <div>Solicitudes</div>
+        </FooterIcon>
+        <FooterIcon $active={activeTab === 'favorites'} onClick={() => setActiveTab('favorites')}>
+          <Heart size={22} />
+          <div>Favoritos</div>
+        </FooterIcon>
+      </MobileFooter>
+    </Container>
   )
 }

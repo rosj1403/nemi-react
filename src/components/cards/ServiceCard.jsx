@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Heart, MapPin } from 'lucide-react';
 import { colors, spacing, typography, transitions, borderRadius, shadows } from '../../styles/designTokens';
 
 /**
@@ -8,10 +9,10 @@ import { colors, spacing, typography, transitions, borderRadius, shadows } from 
  * Props:
  * - image: URL de la imagen del taquero
  * - name: string - Nombre del taquero o taquería
- * - specialty: string - Tipo de comida (ej: "Tacos al pastor")
+ * - specialty: string - Tipo de comida (por ejemplo: "Tacos al pastor")
  * - rating: number - Calificación (0-5)
  * - reviewCount: number - Cantidad de reseñas
- * - distance: string - Distancia (ej: "2.5 km")
+ * - distance: string - Distancia (por ejemplo: "2.5 km")
  * - priceRange: string - Rango de precio (ej: "$200-400")
  * - badge: string (optional) - Insignia de verificación ("verified", "popular", etc.)
  * - onClick: function - Callback cuando se hace click
@@ -98,9 +99,13 @@ const FavoriteButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
   transition: ${transitions.normal};
   box-shadow: ${shadows.sm};
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
   
   &:hover {
     background: white;
@@ -274,7 +279,10 @@ export const ServiceCard = ({
           aria-label={isFavorite ? 'Remover de favoritos' : 'Agregar a favoritos'}
           title={isFavorite ? 'Remover de favoritos' : 'Agregar a favoritos'}
         >
-          {isFavorite ? '❤️' : '🤍'}
+          <Heart
+            color={isFavorite ? colors.danger : '#999'}
+            fill={isFavorite ? colors.danger : 'none'}
+          />
         </FavoriteButton>
       </ImageContainer>
 
@@ -293,7 +301,9 @@ export const ServiceCard = ({
             <span className="count">({reviewCount})</span>
           </Rating>
           <Separator />
-          <Distance>📍 {distance}</Distance>
+          <Distance>
+            <MapPin size={14} /> {distance}
+          </Distance>
           <Separator />
           <Price>{priceRange}</Price>
         </InfoRow>

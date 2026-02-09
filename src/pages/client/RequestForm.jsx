@@ -30,7 +30,7 @@ export default function RequestForm() {
         providerId,
         payload: { date, time, address, notes }
       })
-      nav('/c/requests', { replace: true })
+      nav('/requests', { replace: true })
     } catch (err) {
       setError(err?.message || 'No se pudo crear la solicitud')
     } finally {

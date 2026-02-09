@@ -4,7 +4,6 @@ import NavBar from './components/NavBar'
 import ProtectedRoute from './components/ProtectedRoute'
 
 import ComponentShowcase from './pages/ComponentShowcase'
-import ClientHomeNew from './pages/client/ClientHomeNew'
 
 import Welcome from './pages/auth/Welcome'
 import Login from './pages/auth/Login'
@@ -29,7 +28,6 @@ export default function App() {
     <>
       <Routes>
         <Route path="/components" element={<ComponentShowcase />} />
-        <Route path="/c/home/new" element={<ClientHomeNew />} />
         <Route path="/" element={<Welcome />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register/client" element={<RegisterClient />} />
@@ -38,7 +36,7 @@ export default function App() {
 
         {/* Cliente */}
         <Route
-          path="/c/home"
+          path="/home"
           element={
             <ProtectedRoute allowRoles={['client']}>
               <ClientHome />
@@ -54,7 +52,7 @@ export default function App() {
           }
         />
         <Route
-          path="/c/request/:providerId"
+          path="/request/:providerId"
           element={
             <ProtectedRoute allowRoles={['client']}>
               <RequestForm />
@@ -62,7 +60,7 @@ export default function App() {
           }
         />
         <Route
-          path="/c/requests"
+          path="/requests"
           element={
             <ProtectedRoute allowRoles={['client']}>
               <ClientRequests />
@@ -70,7 +68,7 @@ export default function App() {
           }
         />
         <Route
-          path="/c/favorites"
+          path="/favorites"
           element={
             <ProtectedRoute allowRoles={['client']}>
               <ClientFavorites />
@@ -80,7 +78,7 @@ export default function App() {
 
         {/* Proveedor */}
         <Route
-          path="/p/dashboard"
+          path="/dashboard"
           element={
             <ProtectedRoute allowRoles={['provider']}>
               <ProviderDashboard />
@@ -88,7 +86,7 @@ export default function App() {
           }
         />
         <Route
-          path="/p/orders"
+          path="/orders"
           element={
             <ProtectedRoute allowRoles={['provider']}>
               <ProviderOrders />
@@ -96,7 +94,7 @@ export default function App() {
           }
         />
         <Route
-          path="/p/business"
+          path="/business"
           element={
             <ProtectedRoute allowRoles={['provider']}>
               <ProviderBusiness />

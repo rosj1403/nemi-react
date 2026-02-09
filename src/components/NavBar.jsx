@@ -5,10 +5,15 @@ import { useAuth } from '../context/AuthContext'
 
 const Bar = styled.nav`
   position: sticky;
-  bottom: 0;
+  top: 0;
   background: #fff;
-  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
   padding: 10px 16px;
+  z-index: 200;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `
 
 const Wrap = styled.div`
@@ -39,15 +44,15 @@ export default function NavBar() {
 
   const links = user.role === 'client'
     ? [
-        { to: '/c/home', label: 'Buscar' },
-        { to: '/c/requests', label: 'Solicitudes' },
-        { to: '/c/favorites', label: 'Favoritos' },
+        { to: '/home', label: 'Buscar' },
+        { to: '/requests', label: 'Solicitudes' },
+        { to: '/favorites', label: 'Favoritos' },
         { to: '/account', label: 'Perfil' }
       ]
     : [
-        { to: '/p/dashboard', label: 'Tablero' },
-        { to: '/p/orders', label: 'Pedidos' },
-        { to: '/p/business', label: 'Mis servicios' },
+        { to: '/dashboard', label: 'Tablero' },
+        { to: '/orders', label: 'Pedidos' },
+        { to: '/business', label: 'Mis servicios' },
         { to: '/account', label: 'Perfil' }
       ]
 

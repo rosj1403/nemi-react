@@ -107,10 +107,10 @@ export default function ProviderProfile() {
 
           <Spacer h={16} />
           <Row>
-            <Link to={`/c/request/${provider.id}`} style={{ flex: 1 }}>
+              <Link to={`/request/${provider.id}`} style={{ flex: 1 }}>
               <Button style={{ width: '100%' }}>Solicitar servicio</Button>
             </Link>
-            <Link to="/c/home" style={{ flex: 1 }}>
+              <Link to="/home" style={{ flex: 1 }}>
               <Button variant="outline" style={{ width: '100%' }}>Volver</Button>
             </Link>
           </Row>

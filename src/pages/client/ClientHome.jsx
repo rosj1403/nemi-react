@@ -5,6 +5,7 @@ import { ClipboardList, Heart, Home, MapPin, SlidersHorizontal, Star, User } fro
 import { colors, spacing, typography, borderRadius } from '../../styles/designTokens'
 import { api } from '../../lib/mockApi'
 import { useAuth } from '../../context/AuthContext'
+import { useGeolocation } from '../../hooks/useGeolocation'
 
 /**
  * Página de inicio del cliente
@@ -142,6 +143,12 @@ const ContentArea = styled.div`
   @media (max-width: 768px) {
     padding: 0 ${spacing.md} 80px;
   }
+`
+
+const StatusText = styled.p`
+  margin: ${spacing.sm} ${spacing.lg} 0;
+  color: ${colors.text.secondary};
+  font-size: 0.95rem;
 `
 
 const ProvidersGrid = styled.div`
@@ -338,34 +345,53 @@ const EmptyState = styled.div`
 `
 
 const FALLBACK_IMAGES = [
-  'https://images.unsplash.com/photo-1555939594-58d7cb561d1b?w=400&h=225&fit=crop',
-  'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=225&fit=crop',
-  'https://images.unsplash.com/photo-1585238341710-4b51926f5f90?w=400&h=225&fit=crop',
-  'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=225&fit=crop',
-  'https://images.unsplash.com/photo-1609501676725-7186f017a4b5?w=400&h=225&fit=crop',
-  'https://images.unsplash.com/photo-1618449049551-1e7d6e49fd26?w=400&h=225&fit=crop'
+  'https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=800&h=450&q=80',
+  'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&h=450&q=80',
+  'https://images.unsplash.com/photo-1555939594-58d7cb561d1b?auto=format&fit=crop&w=800&h=450&q=80',
+  'https://images.unsplash.com/photo-1585238341710-4b51926f5f90?auto=format&fit=crop&w=800&h=450&q=80'
 ]
 
 export default function ClientHome() {
   const { user } = useAuth()
   const nav = useNavigate()
+  const { coords, status } = useGeolocation()
   const [searchTerm, setSearchTerm] = useState('')
   const [providers, setProviders] = useState([])
   const [favoriteIds, setFavoriteIds] = useState([])
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+
+  const normalizeText = (value = '') => (
+    value
+      .toString()
+      .normalize('NFD')
+      .replace(/[\u0000-\u001f]/g, '')
+      .replace(/[\u007f-\u007f]/g, '')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .trim()
+  )
 
   useEffect(() => {
     let active = true
     setLoading(true)
+    setError('')
     const handle = setTimeout(async () => {
       try {
+        const location = coords?.lat != null && coords?.lng != null ? coords : null
         const [pRes, fRes] = await Promise.all([
-          api.providers.list({ q: searchTerm }),
+          api.providers.list({ location }),
           api.favorites.list({ userId: user.id })
         ])
         if (!active) return
         setProviders(pRes.providers)
         setFavoriteIds(fRes.favorites)
+      } catch (err) {
+        if (active) {
+          setProviders([])
+          setFavoriteIds([])
+          setError(err?.message || 'No se pudieron cargar proveedores')
+        }
       } finally {
         if (active) setLoading(false)
       }
@@ -375,7 +401,7 @@ export default function ClientHome() {
       active = false
       clearTimeout(handle)
     }
-  }, [searchTerm, user.id])
+  }, [user.id, coords])
 
   const toggleFavorite = async (id) => {
     const res = await api.favorites.toggle({ userId: user.id, providerId: id })
@@ -383,12 +409,22 @@ export default function ClientHome() {
   }
 
   const filteredProviders = useMemo(() => {
-    if (!searchTerm) return providers
-    return providers.filter(
-      provider =>
-        provider.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        provider.specialty.toLowerCase().includes(searchTerm.toLowerCase())
-    )
+    const query = normalizeText(searchTerm)
+    if (!query) return providers
+
+    return providers.filter(provider => {
+      const fields = [
+        provider.name,
+        provider.specialty,
+        provider.description,
+        provider.serviceArea,
+        provider.address,
+        ...(provider.badges || []),
+        ...(provider.packages || []).map(p => p.title)
+      ]
+      const haystack = normalizeText(fields.filter(Boolean).join(' '))
+      return haystack.includes(query)
+    })
   }, [searchTerm, providers])
 
   return (
@@ -400,6 +436,10 @@ export default function ClientHome() {
           <User size={18} />
         </UserProfile>
       </TopBar>
+
+      <StatusText>
+        Ubicación: {status === 'granted' ? 'permitida' : status === 'denied' ? 'denegada' : status || 'pendiente'}
+      </StatusText>
 
       {/* SEARCH BAR */}
       <SearchContainer>
@@ -420,7 +460,7 @@ export default function ClientHome() {
       <MapContainer>
         <iframe
           title="Mapa de proveedores"
-          src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3024.2219901290355!2d-74.00601!3d40.71128!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sunion%20station!5e0!3m2!1ses!2s!4v1234567890"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=-99.1832%2C19.3926%2C-99.0832%2C19.4726&layer=mapnik&marker=19.4326%2C-99.1332"
           allowFullScreen=""
           loading="lazy"
         ></iframe>
@@ -433,6 +473,11 @@ export default function ClientHome() {
             <h3>Cargando proveedores…</h3>
             <p>Por favor espera</p>
           </EmptyState>
+        ) : error ? (
+          <EmptyState>
+            <h3>Hubo un problema</h3>
+            <p>{error}</p>
+          </EmptyState>
         ) : filteredProviders.length > 0 ? (
           <ProvidersGrid>
             {filteredProviders.map((provider, index) => (
@@ -441,6 +486,10 @@ export default function ClientHome() {
                   <img
                     src={provider.photos?.[0] || FALLBACK_IMAGES[index % FALLBACK_IMAGES.length]}
                     alt={provider.name}
+                    onError={(e) => {
+                      const fallback = FALLBACK_IMAGES[index % FALLBACK_IMAGES.length]
+                      if (e.currentTarget.src !== fallback) e.currentTarget.src = fallback
+                    }}
                   />
                   <FavoriteButton
                     onClick={() => toggleFavorite(provider.id)}
@@ -461,7 +510,7 @@ export default function ClientHome() {
                   </RatingRow>
                   <LocationRow>
                     <MapPin size={14} />
-                    {provider.address || 'Ubicación disponible'}
+                    {provider.distanceKm != null ? `${provider.distanceKm.toFixed(1)} km` : (provider.address || 'Ubicación disponible')}
                   </LocationRow>
                   <Link to={`/taquero/${provider.id}`} style={{ textDecoration: 'none' }}>
                     <DetailsButton>Ver detalles</DetailsButton>

@@ -45,6 +45,11 @@ export default function ProviderProfile() {
 
   const fav = favorites.includes(provider.id)
 
+  const mapLat = provider.lat ?? 19.4326
+  const mapLng = provider.lng ?? -99.1332
+  const mapDelta = 0.02
+  const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${mapLng - mapDelta}%2C${mapLat - mapDelta}%2C${mapLng + mapDelta}%2C${mapLat + mapDelta}&layer=mapnik&marker=${mapLat}%2C${mapLng}`
+
   return (
     <Page>
       <Container>
@@ -67,8 +72,15 @@ export default function ProviderProfile() {
           <Muted>{provider.description || 'Sin descripción.'}</Muted>
 
           <Spacer h={14} />
-          <Card style={{ background: '#fafafa' }} aria-label="Galería de fotos (placeholder)">
-            <Muted>Galería de fotos (placeholder). En una versión completa aquí se muestran imágenes del proveedor.</Muted>
+          <Card style={{ padding: 0, overflow: 'hidden' }} aria-label="Ubicación del proveedor">
+            <iframe
+              title="Mapa del proveedor"
+              src={mapSrc}
+              width="100%"
+              height="220"
+              style={{ border: 0 }}
+              loading="lazy"
+            ></iframe>
           </Card>
 
           <Spacer h={14} />

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { ClipboardList, Heart, Home, MapPin, Star, User } from 'lucide-react'
 import styled from 'styled-components'
 import { api } from '../../lib/mockApi'
@@ -25,14 +25,14 @@ const TopBar = styled.div`
 const Logo = styled.div`
   font-size: 1.5rem;
   font-weight: 800;
-  color: ${colors.primary};
+  color: ${colors.primary.menta};
 `
 
 const UserProfile = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: ${colors.primary};
+  background: ${colors.primary.menta};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -105,6 +105,15 @@ const FavoriteButton = styled.button`
   &:hover {
     transform: scale(1.1);
   }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${colors.primary.menta};
+    outline-offset: 2px;
+  }
 `
 
 const CardContent = styled.div`
@@ -156,6 +165,15 @@ const DetailsButton = styled.button`
   &:hover {
     background: #c41e1e;
     transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${colors.primary.menta};
+    outline-offset: 2px;
   }
 `
 
@@ -222,22 +240,30 @@ const FooterIcon = styled.button`
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  padding: ${spacing.xs};
-  color: ${props => (props.$active ? colors.primary : '#999')};
+  padding: ${spacing.sm};
+  color: ${props => (props.$active ? colors.primary.menta : '#555')};
+  background: ${props => (props.$active ? 'rgba(0, 184, 148, 0.12)' : 'transparent')};
+  border-radius: 12px;
   transition: color 0.2s ease;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
+  font-weight: ${props => (props.$active ? 700 : 600)};
 
   svg {
     font-size: 1.5rem;
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${colors.primary.menta};
+    outline-offset: 2px;
   }
 `
 
 export default function ClientFavorites() {
   const { user } = useAuth()
+  const nav = useNavigate()
   const [providers, setProviders] = useState([])
   const [favIds, setFavIds] = useState([])
   const [loading, setLoading] = useState(false)
-  const [activeTab, setActiveTab] = useState('favorites')
 
   async function load() {
     setLoading(true)
@@ -273,7 +299,15 @@ export default function ClientFavorites() {
 
       {/* CONTENT */}
       <ContentArea>
-        {providers.length === 0 ? (
+        {loading ? (
+          <EmptyState>
+            <Icon>
+              <Heart />
+            </Icon>
+            <Title>Cargando…</Title>
+            <Subtitle>Estamos preparando tus favoritos</Subtitle>
+          </EmptyState>
+        ) : providers.length === 0 ? (
           <EmptyState>
             <Icon>
               <Heart />
@@ -304,9 +338,9 @@ export default function ClientFavorites() {
                   <MapPin size={14} />
                   {p.distance ? `${p.distance} km` : 'Ubicación disponible'}
                 </LocationRow>
-                <DetailsButton onClick={() => console.log(`Ver detalles de ${p.name}`)}>
-                  Ver detalles
-                </DetailsButton>
+                <Link to={`/taquero/${p.id}`} style={{ textDecoration: 'none' }}>
+                  <DetailsButton>Ver detalles</DetailsButton>
+                </Link>
               </CardContent>
             </FavoriteCard>
           ))
@@ -315,15 +349,15 @@ export default function ClientFavorites() {
 
       {/* MOBILE FOOTER */}
       <MobileFooter>
-        <FooterIcon $active={activeTab === 'home'} onClick={() => setActiveTab('home')}>
+        <FooterIcon onClick={() => nav('/home')}>
           <Home size={22} />
           <div>Inicio</div>
         </FooterIcon>
-        <FooterIcon $active={activeTab === 'requests'} onClick={() => setActiveTab('requests')}>
+        <FooterIcon onClick={() => nav('/requests')}>
           <ClipboardList size={22} />
           <div>Solicitudes</div>
         </FooterIcon>
-        <FooterIcon $active={activeTab === 'favorites'} onClick={() => setActiveTab('favorites')}>
+        <FooterIcon $active onClick={() => nav('/favorites')}>
           <Heart size={22} />
           <div>Favoritos</div>
         </FooterIcon>

@@ -35,6 +35,17 @@ const Item = styled(Link)`
   font-weight: 600;
   border: 1px solid ${p => (p.$active ? 'var(--nemi-mint)' : 'transparent')};
   background: ${p => (p.$active ? 'rgba(0,184,148,0.12)' : 'transparent')};
+  color: ${p => (p.$active ? 'var(--nemi-dark)' : '#333')};
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    background: rgba(0,184,148,0.08);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--nemi-mint);
+    outline-offset: 2px;
+  }
 `
 
 export default function NavBar() {

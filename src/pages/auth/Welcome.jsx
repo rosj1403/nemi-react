@@ -19,7 +19,7 @@ const WelcomePage = styled.div`
 const Logo = styled.div`
   font-size: 3.5rem;
   font-weight: 800;
-  color: ${colors.primary};
+  color: ${colors.primary.menta};
   margin-bottom: ${spacing.xl};
   letter-spacing: 2px;
   font-family: 'Poppins', sans-serif;
@@ -38,7 +38,7 @@ const Heading = styled.h1`
   color: #000;
 
   .highlight {
-    color: ${colors.primary};
+    color: ${colors.primary.menta};
   }
 `
 
@@ -86,29 +86,43 @@ const StyledButton = styled(Link)`
   font-size: 1rem;
   transition: all 0.3s ease;
   cursor: pointer;
-  border: 2px solid ${colors.primary};
+  border: 2px solid ${colors.primary.menta};
   text-align: center;
 
   &.primary {
-    background: ${colors.primary};
+    background: ${colors.primary.menta};
     color: white;
+    box-shadow: 0 10px 24px rgba(0, 184, 148, 0.25);
 
     &:hover {
       background: #00a380;
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(0, 184, 148, 0.3);
     }
+
+    &:active {
+      transform: translateY(0);
+    }
   }
 
   &.secondary {
     background: white;
-    color: ${colors.primary};
+    color: ${colors.primary.menta};
 
     &:hover {
       background: #f0f0f0;
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(0, 184, 148, 0.1);
     }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${colors.primary.menta};
+    outline-offset: 2px;
   }
 `
 
@@ -120,7 +134,7 @@ const LoginLink = styled(Link)`
   display: inline-block;
 
   &:hover {
-    color: ${colors.primary};
+    color: ${colors.primary.menta};
   }
 `
 

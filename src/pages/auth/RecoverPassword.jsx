@@ -17,7 +17,7 @@ const RecoverPage = styled.div`
 const Logo = styled.div`
   font-size: 2.5rem;
   font-weight: 800;
-  color: ${colors.primary};
+    color: ${colors.primary.menta};
   margin-bottom: ${spacing.lg};
   text-align: center;
 `
@@ -72,7 +72,7 @@ const Input = styled.input`
 
   &:focus {
     outline: none;
-    border-color: ${colors.primary};
+      border-color: ${colors.primary.menta};
     box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.1);
   }
 
@@ -81,9 +81,15 @@ const Input = styled.input`
   }
 `
 
+const HelperText = styled.p`
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0;
+`
+
 const SubmitButton = styled.button`
   padding: ${spacing.md} ${spacing.lg};
-  background: ${colors.primary};
+    background: ${colors.primary.menta};
   color: white;
   border: none;
   border-radius: 50px;
@@ -99,6 +105,15 @@ const SubmitButton = styled.button`
     box-shadow: 0 8px 20px rgba(0, 184, 148, 0.3);
   }
 
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${colors.primary.menta};
+    outline-offset: 2px;
+  }
+
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
@@ -106,7 +121,7 @@ const SubmitButton = styled.button`
 `
 
 const BackLink = styled(Link)`
-  color: ${colors.primary};
+  color: ${colors.primary.menta};
   text-decoration: none;
   font-weight: 600;
   text-align: center;
@@ -120,8 +135,8 @@ const BackLink = styled(Link)`
 
 const SuccessMessage = styled.div`
   background: rgba(0, 184, 148, 0.1);
-  border: 1px solid ${colors.primary};
-  color: ${colors.primary};
+    border: 1px solid ${colors.primary.menta};
+    color: ${colors.primary.menta};
   padding: ${spacing.md};
   border-radius: 12px;
   font-size: 0.95rem;
@@ -160,6 +175,7 @@ export default function RecoverPassword() {
                 onChange={e => setEmail(e.target.value)}
                 required
               />
+              <HelperText>Enviaremos un enlace de recuperación.</HelperText>
             </FieldGroup>
 
             <SubmitButton type="submit">Iniciar Sesión</SubmitButton>

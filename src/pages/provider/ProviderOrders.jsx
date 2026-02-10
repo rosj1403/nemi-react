@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { ClipboardList, FileText, Home, Store, User } from 'lucide-react'
 import styled from 'styled-components'
 import { api } from '../../lib/mockApi'
@@ -24,7 +25,7 @@ const TopBar = styled.div`
 const Logo = styled.div`
   font-size: 1.6rem;
   font-weight: 800;
-  color: ${colors.primary};
+  color: ${colors.primary.menta};
   letter-spacing: 1px;
 `
 
@@ -36,7 +37,7 @@ const UserProfile = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${colors.primary};
+  color: ${colors.primary.menta};
   font-weight: 700;
 `
 
@@ -155,9 +156,23 @@ const Button = styled.button`
   padding: 10px 12px;
   font-weight: 700;
   cursor: pointer;
-  background: ${props => (props.$variant === 'danger' ? '#ffeded' : props.$variant === 'outline' ? 'white' : colors.primary)};
-  color: ${props => (props.$variant === 'danger' ? '#d63031' : props.$variant === 'outline' ? colors.primary : 'white')};
-  border: ${props => (props.$variant === 'outline' ? `2px solid ${colors.primary}` : 'none')};
+  background: ${props => (props.$variant === 'danger' ? '#ffeded' : props.$variant === 'outline' ? 'white' : colors.primary.menta)};
+  color: ${props => (props.$variant === 'danger' ? '#d63031' : props.$variant === 'outline' ? colors.primary.menta : 'white')};
+  border: ${props => (props.$variant === 'outline' ? `2px solid ${colors.primary.menta}` : 'none')};
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+
+  &:hover:not(:disabled) {
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${colors.primary.menta};
+    outline-offset: 2px;
+  }
 `
 
 const Input = styled.input`
@@ -203,19 +218,31 @@ const FooterIcon = styled.button`
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  padding: ${spacing.xs};
-  color: ${props => (props.$active ? colors.primary : '#999')};
+  padding: ${spacing.sm};
+  color: ${props => (props.$active ? colors.primary.menta : '#555')};
+  background: ${props => (props.$active ? 'rgba(0, 184, 148, 0.12)' : 'transparent')};
+  border-radius: 12px;
   transition: color 0.2s ease;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
+  font-weight: ${props => (props.$active ? 700 : 600)};
+
+  svg {
+    font-size: 1.5rem;
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${colors.primary.menta};
+    outline-offset: 2px;
+  }
 `
 
 export default function ProviderOrders() {
   const { user } = useAuth()
+  const nav = useNavigate()
   const [requests, setRequests] = useState([])
   const [provider, setProvider] = useState(null)
   const [loading, setLoading] = useState(false)
   const [rejectReasonById, setRejectReasonById] = useState({})
-  const [activeTab, setActiveTab] = useState('orders')
 
   async function load() {
     setLoading(true)
@@ -269,7 +296,15 @@ export default function ProviderOrders() {
 
         <SectionTitle>Mis solicitudes</SectionTitle>
 
-        {requests.length === 0 ? (
+        {loading && requests.length === 0 ? (
+          <EmptyState>
+            <EmptyIcon>
+              <ClipboardList />
+            </EmptyIcon>
+            <EmptyTitle>Cargando…</EmptyTitle>
+            <EmptyText>Estamos preparando tus solicitudes</EmptyText>
+          </EmptyState>
+        ) : requests.length === 0 ? (
           <EmptyState>
             <EmptyIcon>
               <ClipboardList />
@@ -322,15 +357,15 @@ export default function ProviderOrders() {
       </Content>
 
       <MobileFooter>
-        <FooterIcon $active={activeTab === 'home'} onClick={() => setActiveTab('home')}>
+        <FooterIcon onClick={() => nav('/dashboard')}>
           <Home size={22} />
           <div>Inicio</div>
         </FooterIcon>
-        <FooterIcon $active={activeTab === 'orders'} onClick={() => setActiveTab('orders')}>
+        <FooterIcon $active onClick={() => nav('/orders')}>
           <FileText size={22} />
           <div>Solicitudes</div>
         </FooterIcon>
-        <FooterIcon $active={activeTab === 'business'} onClick={() => setActiveTab('business')}>
+        <FooterIcon onClick={() => nav('/business')}>
           <Store size={22} />
           <div>Mi Negocio</div>
         </FooterIcon>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { ClipboardList, Heart, Home, User } from 'lucide-react'
 import styled from 'styled-components'
 import { api } from '../../lib/mockApi'
@@ -24,14 +25,14 @@ const TopBar = styled.div`
 const Logo = styled.div`
   font-size: 1.5rem;
   font-weight: 800;
-  color: ${colors.primary};
+  color: ${colors.primary.menta};
 `
 
 const UserProfile = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: ${colors.primary};
+  background: ${colors.primary.menta};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -126,21 +127,29 @@ const FooterIcon = styled.button`
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  padding: ${spacing.xs};
-  color: ${props => (props.$active ? colors.primary : '#999')};
+  padding: ${spacing.sm};
+  color: ${props => (props.$active ? colors.primary.menta : '#555')};
+  background: ${props => (props.$active ? 'rgba(0, 184, 148, 0.12)' : 'transparent')};
+  border-radius: 12px;
   transition: color 0.2s ease;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
+  font-weight: ${props => (props.$active ? 700 : 600)};
 
   svg {
     font-size: 1.5rem;
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${colors.primary.menta};
+    outline-offset: 2px;
   }
 `
 
 export default function ClientRequests() {
   const { user } = useAuth()
+  const nav = useNavigate()
   const [requests, setRequests] = useState([])
   const [loading, setLoading] = useState(false)
-  const [activeTab, setActiveTab] = useState('requests')
 
   async function load() {
     setLoading(true)
@@ -168,7 +177,15 @@ export default function ClientRequests() {
 
       {/* CONTENT */}
       <ContentArea>
-        {requests.length === 0 ? (
+        {loading ? (
+          <EmptyState>
+            <Icon>
+              <ClipboardList />
+            </Icon>
+            <Title>Cargando…</Title>
+            <Subtitle>Estamos preparando tus solicitudes</Subtitle>
+          </EmptyState>
+        ) : requests.length === 0 ? (
           <EmptyState>
             <Icon>
               <ClipboardList />
@@ -183,7 +200,7 @@ export default function ClientRequests() {
                 <div style={{ fontWeight: 800, marginBottom: '8px' }}>
                   {r.providerName}
                 </div>
-                <div style={{ fontSize: '0.85rem', color: colors.primary, marginBottom: '8px' }}>
+                <div style={{ fontSize: '0.85rem', color: colors.primary.menta, marginBottom: '8px' }}>
                   {r.status}
                 </div>
                 <div style={{ fontSize: '0.9rem', color: '#666', marginBottom: '4px' }}>
@@ -213,15 +230,15 @@ export default function ClientRequests() {
 
       {/* MOBILE FOOTER */}
       <MobileFooter>
-        <FooterIcon $active={activeTab === 'home'} onClick={() => setActiveTab('home')}>
+        <FooterIcon onClick={() => nav('/home')}>
           <Home size={22} />
           <div>Inicio</div>
         </FooterIcon>
-        <FooterIcon $active={activeTab === 'requests'} onClick={() => setActiveTab('requests')}>
+        <FooterIcon $active onClick={() => nav('/requests')}>
           <ClipboardList size={22} />
           <div>Solicitudes</div>
         </FooterIcon>
-        <FooterIcon $active={activeTab === 'favorites'} onClick={() => setActiveTab('favorites')}>
+        <FooterIcon onClick={() => nav('/favorites')}>
           <Heart size={22} />
           <div>Favoritos</div>
         </FooterIcon>

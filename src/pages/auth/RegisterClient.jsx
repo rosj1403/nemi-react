@@ -18,7 +18,7 @@ const RegisterPage = styled.div`
 const Logo = styled.div`
   font-size: 2.5rem;
   font-weight: 800;
-  color: ${colors.primary};
+  color: ${colors.primary.menta};
   margin-bottom: ${spacing.lg};
   text-align: center;
 `
@@ -42,7 +42,7 @@ const HeaderContainer = styled.div`
 const UserIcon = styled.div`
   width: 48px;
   height: 48px;
-  background: ${colors.primary};
+  background: ${colors.primary.menta};
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -91,7 +91,7 @@ const Input = styled.input`
 
   &:focus {
     outline: none;
-    border-color: ${colors.primary};
+    border-color: ${colors.primary.menta};
     box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.1);
   }
 
@@ -100,9 +100,15 @@ const Input = styled.input`
   }
 `
 
+const HelperText = styled.p`
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0;
+`
+
 const SubmitButton = styled.button`
   padding: ${spacing.md} ${spacing.lg};
-  background: ${colors.primary};
+  background: ${colors.primary.menta};
   color: white;
   border: none;
   border-radius: 50px;
@@ -116,6 +122,15 @@ const SubmitButton = styled.button`
     background: #00a380;
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(0, 184, 148, 0.3);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${colors.primary.menta};
+    outline-offset: 2px;
   }
 
   &:disabled {
@@ -138,7 +153,7 @@ const FooterLink = styled.p`
   color: #333;
 
   a {
-    color: ${colors.primary};
+    color: ${colors.primary.menta};
     text-decoration: none;
     font-weight: 600;
 
@@ -231,6 +246,7 @@ export default function RegisterClient() {
               onChange={e => setPhone(e.target.value)}
               required
             />
+            <HelperText>Se usa para coordinar tu servicio.</HelperText>
           </FieldGroup>
 
           <FieldGroup>
@@ -243,6 +259,7 @@ export default function RegisterClient() {
               onChange={e => setPassword(e.target.value)}
               required
             />
+            <HelperText>Usa al menos 6 caracteres.</HelperText>
           </FieldGroup>
 
           <FieldGroup>

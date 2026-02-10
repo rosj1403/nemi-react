@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { FileText, Home, Store, User } from 'lucide-react'
 import styled from 'styled-components'
 import { api } from '../../lib/mockApi'
@@ -24,7 +25,7 @@ const TopBar = styled.div`
 const Logo = styled.div`
   font-size: 1.6rem;
   font-weight: 800;
-  color: ${colors.primary};
+  color: ${colors.primary.menta};
   letter-spacing: 1px;
 `
 
@@ -36,7 +37,7 @@ const UserProfile = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${colors.primary};
+  color: ${colors.primary.menta};
   font-weight: 700;
 `
 
@@ -132,9 +133,24 @@ const PrimaryButton = styled.button`
   padding: 12px 16px;
   font-weight: 700;
   cursor: pointer;
-  background: ${colors.primary};
+  background: ${colors.primary.menta};
   color: white;
   margin-top: ${spacing.lg};
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background: #00a87f;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${colors.primary.menta};
+    outline-offset: 2px;
+  }
 `
 
 /* Mobile Footer Navigation */
@@ -164,19 +180,31 @@ const FooterIcon = styled.button`
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  padding: ${spacing.xs};
-  color: ${props => (props.$active ? colors.primary : '#999')};
+  padding: ${spacing.sm};
+  color: ${props => (props.$active ? colors.primary.menta : '#555')};
+  background: ${props => (props.$active ? 'rgba(0, 184, 148, 0.12)' : 'transparent')};
+  border-radius: 12px;
   transition: color 0.2s ease;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
+  font-weight: ${props => (props.$active ? 700 : 600)};
+
+  svg {
+    font-size: 1.5rem;
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${colors.primary.menta};
+    outline-offset: 2px;
+  }
 `
 
 export default function ProviderBusiness() {
   const { user } = useAuth()
+  const nav = useNavigate()
   const [provider, setProvider] = useState(null)
   const [loading, setLoading] = useState(false)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
-  const [activeTab, setActiveTab] = useState('business')
 
   async function load() {
     setLoading(true)
@@ -233,7 +261,11 @@ export default function ProviderBusiness() {
 
         <SectionTitle>Mi negocio</SectionTitle>
 
-        {!provider ? (
+        {loading ? (
+          <FormCard>
+            <Muted>Cargando información del negocio…</Muted>
+          </FormCard>
+        ) : !provider ? (
           <FormCard>
             <Muted>No se encontró un perfil de proveedor asociado a este usuario.</Muted>
           </FormCard>
@@ -260,15 +292,15 @@ export default function ProviderBusiness() {
       </Content>
 
       <MobileFooter>
-        <FooterIcon $active={activeTab === 'home'} onClick={() => setActiveTab('home')}>
+        <FooterIcon onClick={() => nav('/dashboard')}>
           <Home size={22} />
           <div>Inicio</div>
         </FooterIcon>
-        <FooterIcon $active={activeTab === 'orders'} onClick={() => setActiveTab('orders')}>
+        <FooterIcon onClick={() => nav('/orders')}>
           <FileText size={22} />
           <div>Solicitudes</div>
         </FooterIcon>
-        <FooterIcon $active={activeTab === 'business'} onClick={() => setActiveTab('business')}>
+        <FooterIcon $active onClick={() => nav('/business')}>
           <Store size={22} />
           <div>Mi Negocio</div>
         </FooterIcon>

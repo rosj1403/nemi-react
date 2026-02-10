@@ -48,12 +48,28 @@ export const Button = styled.button`
   border: 1px solid ${props => (props.variant === 'outline' ? 'var(--nemi-dark)' : 'transparent')};
   background: ${props => {
     if (props.variant === 'danger') return 'var(--nemi-danger)'
-    if (props.variant === 'outline') return 'transparent'
+    if (props.variant === 'outline') return '#fff'
     return 'var(--nemi-mint)'
   }};
   color: ${props => (props.variant === 'outline' ? 'var(--nemi-dark)' : '#fff')};
   cursor: pointer;
   font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+
+  &:hover:not(:disabled) {
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--nemi-mint);
+    outline-offset: 2px;
+  }
 
   &:disabled {
     opacity: 0.6;
@@ -68,6 +84,11 @@ export const Input = styled.input`
   border-radius: 12px;
   border: 1px solid #ddd;
   background: #fff;
+
+  &:focus {
+    outline: 2px solid var(--nemi-mint);
+    border-color: var(--nemi-mint);
+  }
 `
 
 export const Textarea = styled.textarea`
@@ -77,6 +98,11 @@ export const Textarea = styled.textarea`
   border-radius: 12px;
   border: 1px solid #ddd;
   background: #fff;
+
+  &:focus {
+    outline: 2px solid var(--nemi-mint);
+    border-color: var(--nemi-mint);
+  }
 `
 
 export const Label = styled.label`

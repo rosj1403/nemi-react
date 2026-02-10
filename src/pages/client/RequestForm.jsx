@@ -20,6 +20,11 @@ export default function RequestForm() {
     api.providers.getById(providerId).then(r => setProvider(r.provider)).catch(() => setProvider(null))
   }, [providerId])
 
+  const mapLat = provider?.lat ?? 19.4326
+  const mapLng = provider?.lng ?? -99.1332
+  const mapDelta = 0.02
+  const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${mapLng - mapDelta}%2C${mapLat - mapDelta}%2C${mapLng + mapDelta}%2C${mapLat + mapDelta}&layer=mapnik&marker=${mapLat}%2C${mapLng}`
+
   async function onSubmit(e) {
     e.preventDefault()
     setError('')
@@ -58,8 +63,15 @@ export default function RequestForm() {
             <Input id="address" value={address} onChange={e => setAddress(e.target.value)} placeholder="Dirección o referencia" required />
 
             <Spacer h={10} />
-            <Card style={{ background: '#fafafa' }} aria-label="Mapa (placeholder)">
-              <Muted>Mapa para seleccionar ubicación (placeholder). En una versión completa aquí se marcaría un pin.</Muted>
+            <Card style={{ padding: 0, overflow: 'hidden' }} aria-label="Mapa de ubicación">
+              <iframe
+                title="Mapa del proveedor"
+                src={mapSrc}
+                width="100%"
+                height="220"
+                style={{ border: 0 }}
+                loading="lazy"
+              ></iframe>
             </Card>
 
             <Label htmlFor="notes">Notas especiales</Label>

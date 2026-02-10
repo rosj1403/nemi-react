@@ -1,7 +1,10 @@
 import styled from 'styled-components'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { ClipboardList, Heart, Home, MapPin, SlidersHorizontal, Star, User } from 'lucide-react'
 import { colors, spacing, typography, borderRadius } from '../../styles/designTokens'
+import { api } from '../../lib/mockApi'
+import { useAuth } from '../../context/AuthContext'
 
 /**
  * Página de inicio del cliente
@@ -31,14 +34,14 @@ const TopBar = styled.div`
 const Logo = styled.div`
   font-size: 1.5rem;
   font-weight: 800;
-  color: ${colors.primary};
+  color: ${colors.primary.menta};
 `
 
 const UserProfile = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: ${colors.primary};
+  background: ${colors.primary.menta};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,8 +72,18 @@ const SearchInput = styled.input`
   transition: all 0.3s ease;
 
   &:focus {
-    outline: none;
-    border-color: ${colors.primary};
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${colors.primary.menta};
+    outline-offset: 2px;
+  }
     box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.1);
   }
 
@@ -82,12 +95,23 @@ const SearchInput = styled.input`
 const FilterIcon = styled.button`
   position: absolute;
   right: ${spacing.md};
-  background: none;
-  border: none;
+  background: #fff;
+  border: 1px solid #ddd;
   font-size: 1.2rem;
   cursor: pointer;
-  color: ${colors.primary};
+  color: ${colors.primary.menta};
   padding: ${spacing.xs};
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+
+  &:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${colors.primary.menta};
+    outline-offset: 2px;
+  }
 `
 
 const MapContainer = styled.div`
@@ -220,18 +244,32 @@ const LocationRow = styled.div`
 const DetailsButton = styled.button`
   width: 100%;
   padding: ${spacing.sm} ${spacing.md};
-  background: ${colors.danger};
-  color: white;
+  background: ${colors.primary.menta};
+  color: #fff;
   border: none;
-  border-radius: 50px;
+  border-radius: 12px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 0.95rem;
 
   &:hover {
-    background: #c41e1e;
+    background: #00a87f;
     transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${colors.primary.menta};
+    outline-offset: 2px;
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${colors.primary.menta};
+    outline-offset: 2px;
   }
 `
 
@@ -262,13 +300,21 @@ const FooterIcon = styled.button`
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  padding: ${spacing.xs};
-  color: ${props => (props.$active ? colors.primary : '#999')};
+  padding: ${spacing.sm};
+  color: ${props => (props.$active ? colors.primary.menta : '#555')};
+  background: ${props => (props.$active ? 'rgba(0, 184, 148, 0.12)' : 'transparent')};
+  border-radius: 12px;
   transition: color 0.2s ease;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
+  font-weight: ${props => (props.$active ? 700 : 600)};
 
   svg {
     font-size: 1.5rem;
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${colors.primary.menta};
+    outline-offset: 2px;
   }
 `
 
@@ -291,100 +337,53 @@ const EmptyState = styled.div`
   }
 `
 
-// Mock data - Proveedores
-const MOCK_PROVIDERS = [
-  {
-    id: 1,
-    name: 'Tacos Piña',
-    specialty: 'Tacos variados',
-    image: 'https://images.unsplash.com/photo-1555939594-58d7cb561d1b?w=400&h=225&fit=crop',
-    rating: 4.8,
-    reviewCount: 127,
-    distance: 0.5,
-    location: 'Perif. Paseo de la República, 7166',
-    category: 'taquerias',
-    minPrice: 200,
-    isFavorite: false
-  },
-  {
-    id: 2,
-    name: 'Parrillada La Mexicana',
-    specialty: 'Carne asada',
-    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=225&fit=crop',
-    rating: 4.5,
-    reviewCount: 28,
-    distance: 3.8,
-    location: 'Av. Paseo de la República',
-    category: 'parrilladas',
-    minPrice: 300,
-    isFavorite: false
-  },
-  {
-    id: 3,
-    name: 'Taquería Express',
-    specialty: 'Tacos de canasta',
-    image: 'https://images.unsplash.com/photo-1585238341710-4b51926f5f90?w=400&h=225&fit=crop',
-    rating: 4.3,
-    reviewCount: 15,
-    distance: 1.2,
-    location: 'Centro Histórico',
-    category: 'taquerias',
-    minPrice: 150,
-    isFavorite: false
-  },
-  {
-    id: 4,
-    name: 'Barbacoa Tradicional',
-    specialty: 'Barbacoa de res',
-    image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=225&fit=crop',
-    rating: 4.7,
-    reviewCount: 35,
-    distance: 4.2,
-    location: 'Zona Sur',
-    category: 'barbacoa',
-    minPrice: 250,
-    isFavorite: false
-  },
-  {
-    id: 5,
-    name: 'Quesadillas Casa María',
-    specialty: 'Quesadillas rellenas',
-    image: 'https://images.unsplash.com/photo-1609501676725-7186f017a4b5?w=400&h=225&fit=crop',
-    rating: 4.4,
-    reviewCount: 22,
-    distance: 2.1,
-    location: 'Polanco',
-    category: 'quesadillas',
-    minPrice: 120,
-    isFavorite: false
-  },
-  {
-    id: 6,
-    name: 'Carnitas El Jefe',
-    specialty: 'Carnitas de cerdo',
-    image: 'https://images.unsplash.com/photo-1618449049551-1e7d6e49fd26?w=400&h=225&fit=crop',
-    rating: 4.9,
-    reviewCount: 58,
-    distance: 1.8,
-    location: 'Benito Juárez',
-    category: 'carnitas',
-    minPrice: 180,
-    isFavorite: false
-  }
+const FALLBACK_IMAGES = [
+  'https://images.unsplash.com/photo-1555939594-58d7cb561d1b?w=400&h=225&fit=crop',
+  'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=225&fit=crop',
+  'https://images.unsplash.com/photo-1585238341710-4b51926f5f90?w=400&h=225&fit=crop',
+  'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=225&fit=crop',
+  'https://images.unsplash.com/photo-1609501676725-7186f017a4b5?w=400&h=225&fit=crop',
+  'https://images.unsplash.com/photo-1618449049551-1e7d6e49fd26?w=400&h=225&fit=crop'
 ]
 
 export default function ClientHome() {
+  const { user } = useAuth()
+  const nav = useNavigate()
   const [searchTerm, setSearchTerm] = useState('')
-  const [providers, setProviders] = useState(MOCK_PROVIDERS)
-  const [activeTab, setActiveTab] = useState('home')
+  const [providers, setProviders] = useState([])
+  const [favoriteIds, setFavoriteIds] = useState([])
+  const [loading, setLoading] = useState(false)
 
-  const toggleFavorite = (id) => {
-    setProviders(prev =>
-      prev.map(p => (p.id === id ? { ...p, isFavorite: !p.isFavorite } : p))
-    )
+  useEffect(() => {
+    let active = true
+    setLoading(true)
+    const handle = setTimeout(async () => {
+      try {
+        const [pRes, fRes] = await Promise.all([
+          api.providers.list({ q: searchTerm }),
+          api.favorites.list({ userId: user.id })
+        ])
+        if (!active) return
+        setProviders(pRes.providers)
+        setFavoriteIds(fRes.favorites)
+      } finally {
+        if (active) setLoading(false)
+      }
+    }, 250)
+
+    return () => {
+      active = false
+      clearTimeout(handle)
+    }
+  }, [searchTerm, user.id])
+
+  const toggleFavorite = async (id) => {
+    const res = await api.favorites.toggle({ userId: user.id, providerId: id })
+    setFavoriteIds(res.favorites)
   }
 
   const filteredProviders = useMemo(() => {
+    if (!searchTerm) return providers
     return providers.filter(
       provider =>
         provider.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -429,19 +428,27 @@ export default function ClientHome() {
 
       {/* CONTENT */}
       <ContentArea>
-        {filteredProviders.length > 0 ? (
+        {loading ? (
+          <EmptyState>
+            <h3>Cargando proveedores…</h3>
+            <p>Por favor espera</p>
+          </EmptyState>
+        ) : filteredProviders.length > 0 ? (
           <ProvidersGrid>
-            {filteredProviders.map((provider) => (
+            {filteredProviders.map((provider, index) => (
               <ProviderCard key={provider.id}>
                 <ProviderImage>
-                  <img src={provider.image} alt={provider.name} />
+                  <img
+                    src={provider.photos?.[0] || FALLBACK_IMAGES[index % FALLBACK_IMAGES.length]}
+                    alt={provider.name}
+                  />
                   <FavoriteButton
                     onClick={() => toggleFavorite(provider.id)}
-                    title={provider.isFavorite ? 'Quitar de favoritos' : 'Agregar a favoritos'}
+                    title={favoriteIds.includes(provider.id) ? 'Quitar de favoritos' : 'Agregar a favoritos'}
                   >
                     <Heart
-                      color={provider.isFavorite ? colors.danger : '#999'}
-                      fill={provider.isFavorite ? colors.danger : 'none'}
+                      color={favoriteIds.includes(provider.id) ? colors.danger : '#999'}
+                      fill={favoriteIds.includes(provider.id) ? colors.danger : 'none'}
                     />
                   </FavoriteButton>
                 </ProviderImage>
@@ -449,16 +456,16 @@ export default function ClientHome() {
                   <ProviderName>{provider.name}</ProviderName>
                   <RatingRow>
                     <Star size={16} className="stars" />
-                    <span>{provider.rating}</span>
-                    <span>({provider.reviewCount})</span>
+                    <span>{provider.rating || 0}</span>
+                    <span>({provider.reviews?.length || 0})</span>
                   </RatingRow>
                   <LocationRow>
                     <MapPin size={14} />
-                    {provider.location}
+                    {provider.address || 'Ubicación disponible'}
                   </LocationRow>
-                  <DetailsButton onClick={() => console.log(`Ver detalles de ${provider.name}`)}>
-                    Ver detalles
-                  </DetailsButton>
+                  <Link to={`/taquero/${provider.id}`} style={{ textDecoration: 'none' }}>
+                    <DetailsButton>Ver detalles</DetailsButton>
+                  </Link>
                 </ProviderInfo>
               </ProviderCard>
             ))}
@@ -473,48 +480,19 @@ export default function ClientHome() {
 
       {/* MOBILE FOOTER */}
       <MobileFooter>
-        <FooterIcon $active={activeTab === 'home'} onClick={() => setActiveTab('home')}>
+        <FooterIcon $active onClick={() => nav('/home')}>
           <Home size={22} />
           <div>Inicio</div>
         </FooterIcon>
-        <FooterIcon $active={activeTab === 'orders'} onClick={() => setActiveTab('orders')}>
+        <FooterIcon onClick={() => nav('/requests')}>
           <ClipboardList size={22} />
           <div>Solicitudes</div>
         </FooterIcon>
-        <FooterIcon $active={activeTab === 'favorites'} onClick={() => setActiveTab('favorites')}>
+        <FooterIcon onClick={() => nav('/favorites')}>
           <Heart size={22} />
           <div>Favoritos</div>
         </FooterIcon>
       </MobileFooter>
     </Container>
   )
-}import React, { useEffect, useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { api } from '../../lib/mockApi'
-import { useAuth } from '../../context/AuthContext'
-import { useGeolocation } from '../../hooks/useGeolocation'
-import {
-  Card, Container, Page, Spacer, Title, Label, Input, Button, Row, Chip, Muted
-} from '../../components/ui'
-import styled from 'styled-components'
-
-const List = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-`
-
-const Two = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-  @media (min-width: 820px) {
-    grid-template-columns: 380px 1fr;
-  }
-`
-
-function formatKm(km) {
-  if (km == null) return ''
-  if (km < 1) return `${Math.round(km * 1000)} m`
-  return `${km.toFixed(1)} km`
 }

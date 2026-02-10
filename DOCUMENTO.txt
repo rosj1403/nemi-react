@@ -1,0 +1,1724 @@
+1. Introducción
+
+
+
+La contratación de servicios gastronómicos para eventos sociales en México, como taquizas y
+parrilladas, se realiza principalmente mediante recomendaciones informales, redes sociales o
+contactos personales. Este modelo tradicional presenta limitaciones importantes: falta de
+transparencia en precios, dificultad para comparar opciones y una marcada ausencia de
+mecanismos que garanticen la confianza y la eficiencia en la conexión entre clientes y
+proveedores. Además, la contratación informal a menudo implica acuerdos con proveedores
+geográficamente distantes, lo cual genera desconfianza, incertidumbre logística y dificulta el
+cumplimiento del servicio. En un contexto donde la digitalización se ha convertido en un factor
+clave para la competitividad de los negocios, estas prácticas resultan insuficientes para
+responder a las expectativas actuales de los consumidores (RIDE, 2021).
+
+Este proyecto propone el desarrollo de una Aplicación Web tipo marketplace que busca
+formalizar y optimizar esta actividad. La solución se denomina Nemi (una palabra de origen
+náhuatl que significa 'vivir o conversar con otros', enfatizando su rol como un punto de
+encuentro digital para la co-creación de valor y la conexión. La implementación se realizará
+con la librería ReactJS, concentrando la contribución en el desarrollo Front-End y el diseño. El
+presente Trabajo Final de Maestría (TFM) se enfoca en la innovación en la Experiencia de
+Usuario (UX) para la fase de encuentro digital y la gestión de solicitudes preliminares. Por lo
+tanto, el alcance del proyecto excluye el desarrollo de pasarelas de pago y la infraestructura
+transaccional completa, centrándose exclusivamente en la conexión y la formalización de la
+negociación.
+
+
+
+
+1.1. Justificación
+
+
+
+Diversos estudios demuestran que las plataformas digitales han transformado el sector
+restaurantero en México, permitiendo a pequeños negocios aumentar su visibilidad y mejorar
+sus ingresos (RIDE, 2021). No obstante, estas plataformas se enfocan en la entrega de comida
+a domicilio, dejando desatendido el nicho de servicios para eventos, donde la contratación
+sigue siendo informal, ineficiente y basada en la desconfianza (Redalyc, 2021; UAM, 2021).
+
+El proyecto Nemi aborda esta problemática mediante el desarrollo de una Aplicación Web
+especializada en la conexión y geolocalización de proveedores. La propuesta se centra en
+ofrecer una interfaz intuitiva, accesible y confiable, cuyo valor reside en la innovación en la
+Experiencia de Usuario (UX) a través de la aplicación de principios avanzados de diseño. La
+contribución novedosa de este trabajo incluye el desarrollo de un Flujo de Gestión de
+Solicitudes transparente, la integración de Gamificación Ligera para fomentar la reputación
+del proveedor, y el diseño de microinteracciones para aumentar la percepción de fluidez. La
+eficacia de una aplicación web depende fundamentalmente de la calidad de su experiencia de
+usuario y su usabilidad (Lu, Qu, & Chen, 2025).
+
+Adicionalmente, se garantiza la usabilidad a través del cumplimiento estricto de los estándares
+de Accesibilidad Web (WCAG) y el diseño responsivo para un alcance universal (W3C, 2018).
+Las microinteracciones ayudan a guiar al usuario a través del flujo de la plataforma y a
+construir una sensación de satisfacción y control (Kendrick, 2018). Con ello, Nemi busca
+establecer un punto de encuentro digital basado en la proximidad geográfica y en la
+transparencia operativa, mitigando la incertidumbre de la distancia y la desconfianza derivada
+de la informalidad.
+
+
+
+
+1.2. Planteamiento del problema
+
+
+
+A pesar de la consolidación de las plataformas digitales en el sector gastronómico mexicano,
+impulsada por la viabilidad de las soluciones tecnológicas, el nicho de la contratación de
+servicios para eventos (taquizas y parrilladas) permanece en gran medida ajeno a esta
+digitalización. Este desfase genera una brecha significativa en la oferta de valor para el
+consumidor, cuyas consecuencias se manifiestan en tres ejes principales:
+
+   1. Ineficiencia logística y geográfica: La dependencia de métodos informales impide a los
+        usuarios filtrar y seleccionar proveedores basándose en la ubicación geográfica del
+        evento, lo que resulta en ineficiencias logísticas, altos costes de desplazamiento y una
+        mayor incertidumbre.
+   2. Ausencia de confianza y transparencia: La falta de una plataforma centralizada se
+        traduce en una carencia de métricas de reputación y sistemas de feedback, lo que
+        perpetúa la desconfianza y dificulta la toma de decisiones informada.
+   3. Baja usabilidad digital: Las experiencias actuales no están optimizadas para la gestión
+        específica de una solicitud de servicio, lo que constituye un déficit en la usabilidad y la
+        accesibilidad.
+
+El problema fundamental que el proyecto Nemi aborda es la carencia de una Aplicación Web
+especializada que utilice el Diseño de Interfaz de Usuario (UI) y la Experiencia de Usuario (UX)
+como herramientas principales para mitigar esta informalidad y resolver los problemas
+logísticos y de confianza mediante la implementación de un Flujo de Gestión de Solicitudes.
+
+Por lo tanto, la pregunta central de esta investigación y desarrollo es:
+
+¿Cómo puede el diseño e implementación de una Aplicación Web basada en la conexión
+geolocalizada a la Ubicación del Evento, y construida con principios de Accesibilidad Web
+(WCAG) y diseño responsivo, establecer una plataforma de encuentro eficiente y confiable
+para los servicios de taquizas y parrilladas en México?
+
+
+
+
+1.3. Estructura del trabajo
+
+
+
+El presente documento del Trabajo Final de Maestría documenta el proceso de investigación,
+diseño y desarrollo de la Aplicación Web Nemi. La estructura del documento se encuentra
+organizada en los siguientes seis capítulos:
+
+   •    Capítulo 1 (Introducción): Establece el contexto cultural y social del proyecto Nemi,
+        formaliza el Planteamiento del Problema de la informalidad en el sector gastronómico
+        de eventos, y justifica la relevancia del marketplace en el ámbito técnico y social.
+   •    Capítulo 2 (Contexto y estado del arte): Fundamenta la solución de diseño a través de
+        la investigación de referencias clave en marketplaces de doble lado (benchmarking de
+        plataformas como Uber Eats y Airbnb) y el marco teórico sobre la Experiencia de
+        Usuario, accesibilidad (WCAG) y microinteracciones.
+   •    Capítulo 3 (Objetivos y metodología de trabajo): Detalla el objetivo general y los
+        específicos del TFM. Describe la elección y aplicación de la metodología ágil Scrum para
+        la gestión del desarrollo Front-End, incluyendo la definición de roles y la planificación
+        de sprints mediante el Diagrama de Gantt.
+   •    Capítulo 4 (Desarrollo específico de la contribución): Describe las fases de desarrollo e
+        implementación de la Aplicacion Web Nemi, abarcando la identificación de los
+        requisitos funcionales, el proceso de diseño UI/UX, y la ejecución del desarrollo Front-
+        End con ReactJS. Este capítulo también incorpora la validación del trabajo mediante el
+        análisis de usabilidad y la estimación de los Costos de implantación de la interfaz.
+   •    Capítulo 5 (Conclusiones y trabajo futuro): Evalúa los resultados obtenidos, reportando
+        las conclusiones clave de la investigación y del diseño. Presenta los hallazgos de las
+        pruebas de usabilidad del MVP y las líneas de trabajo futuro para la expansión y
+        mantenimiento de la plataforma Nemi.
+
+
+
+
+•   Referencias y Anexos: Incluye la lista completa de referencias bibliográficas citadas en
+    el texto (formato APA 7) y los anexos obligatorios, como el Artículo Resumen y el
+    Manual Básico de Usuario del sistema Nemi.
+
+
+
+
+
+2. Contexto y estado del arte
+
+
+El presente análisis establece el Estado del Arte sobre los marketplaces de servicios de doble
+lado (two-sided platforms) y sus implicaciones en la Experiencia de Usuario (UX), con el
+objetivo de sustentar el desarrollo de una plataforma especializada para el sector de
+taquerías. Estos ecosistemas digitales, que median transacciones entre proveedores y
+consumidores, han generado una disrupción sistémica en múltiples industrias (Valdivino, de
+Paula, & Gerhard, 2025). Este capítulo fundamenta la innovación del proyecto Nemi al
+identificar las tendencias de diseño necesarias y el vacío funcional no cubierto por las
+plataformas actuales.
+
+
+
+   2.1. Marketplaces de servicios de doble lado y factores críticos
+
+
+
+
+La base teórica se fundamenta en la trayectoria de plataformas líderes, tales como Uber Eats
+y Rappi, que son ejemplos canónicos en la entrega de alimentos y el modelo de superapp en
+América Latina, respectivamente. Uber Eats, al reportar a México como su mercado de mayor
+crecimiento global con más de 8 millones de usuarios para 2025 (Uber México, 2025), valida
+la alta penetración y la demanda consolidada por soluciones de food delivery. Rappi (Sacra,
+2021), con su expansión multivertical, ilustra el potencial de una propuesta de valor amplia en
+mercados urbanos densos y la capacidad de adaptarse a las particularidades logísticas de la
+región.
+
+El modelo de la economía colaborativa encuentra su referente en Airbnb, cuya innovación
+radicó en la co-creación de valor y la construcción de confianza a través de sistemas robustos
+de reseñas y verificación (Cerdá-Mansilla, Lozano-Blasco, & Rubio, 2025). Este modelo de
+confianza es de especial interés para Nemi, ya que el proyecto busca replicar la construcción
+de credibilidad y la optimización de la búsqueda para un servicio especializado.
+
+
+
+La experiencia de usuario en estas plataformas es un factor crítico de éxito, donde la confianza
+es un elemento vital, especialmente en servicios personales o de alto valor percibido. Dicha
+confianza se construye mediante la transparencia de la interfaz, la calidad de la información
+del proveedor, la visibilidad de opiniones, y la seguridad en el procesamiento de datos.
+
+
+
+
+   2.2. Tendencias de Diseño UX/UI aplicadas a Plataformas de Servicio
+
+
+
+
+La eficacia de una aplicación móvil o web depende fundamentalmente de la calidad de su
+experiencia de usuario (Lu, Qu, & Chen, 2025). El diseño de Nemi debe incorporar las
+siguientes tendencias y estándares para asegurar una interfaz intuitiva, accesible y atractiva,
+diferenciándose de la oferta existente:
+
+   •    Diseño centrado en la accesibilidad (WCAG): La adopción de las Pautas de Accesibilidad
+        al Contenido en la Web (WCAG 2.1) es indispensable (W3C, 2018). Esto incluye
+        garantizar la correcta jerarquía de títulos, suficiente contraste de colores para usuarios
+        con baja visión, navegación por teclado para personas con dificultades motrices, y
+        etiquetas descriptivas (alt text) para lectores de pantalla. En el contexto de un servicio
+        de alimentos, esto garantiza que la interfaz sea usable por el mayor número posible
+        de personas, cumpliendo con los estándares internacionales.
+   •    Diseño mobile first y responsivo: Dado que el acceso a plataformas de marketplace es
+        predominantemente móvil, el diseño de la interfaz de usuario debe priorizar la
+        experiencia en dispositivos pequeños, asegurando que la transición a formatos de
+        escritorio sea fluida y que los elementos clave (como la búsqueda y la solicitud de
+        servicio) sean fácilmente accesibles sin importar el tamaño de la pantalla.
+   •    Microinteracciones: Elementos sutiles pero esenciales en la interfaz. Estas se utilizan
+        para proporcionar feedback inmediato al usuario, como las animaciones al añadir un
+        servicio al carrito, la retroalimentación visual al filtrar un taquero, o las transiciones
+
+
+                                                                                                                7
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+        suaves al navegar entre perfiles. Las microinteracciones ayudan a guiar al usuario a
+        través del flujo de la plataforma y a construir una sensación de satisfacción y control
+        (Kendrick, 2018).
+    •   Gamificación: La aplicación de elementos de juego en contextos no lúdicos (Jia, Bao, &
+        Yu, 2023). En una plataforma como Nemi, esto puede aplicarse a través de:
+            o Insignias de Verificación/Prestigio: Niveles o insignias para los taqueros
+                 basadas en la calidad de sus reseñas o su volumen de servicio.
+            o Sistema de Recompensas: Puntos o descuentos para usuarios frecuentes que
+                 utilizan la plataforma para reservar servicios, aumentando la lealtad y el uso
+                 repetido.
+
+
+
+
+    2.3. Benchmarking competitivo y la brecha de Nemi
+
+
+
+Para validar el valor único del proyecto Nemi, se realizó un análisis competitivo
+(benchmarking) con plataformas líderes en el sector de servicios. Este análisis comparativo
+identificó que, si bien existen soluciones robustas para la entrega de alimentos o la
+contratación de servicios profesionales, no existe una plataforma digitalizada y optimizada en
+UX/UI enfocada exclusivamente en el nicho geolocalizado de taquizas y parrilladas en México.
+
+Fiverr es un buen referente del diseño de paquetes de servicio y de cómo presentar al usuario
+opciones claras y comparables, algo que Nemi también necesita aunque el producto sea
+distinto.
+
+En el segmento de contratación de servicios profesionales digitales, plataformas como Fiverr
+y Freelancer, si bien no pertenecen al sector gastronómico, resultan relevantes como
+referentes funcionales. Su aportación radica en la madurez de sus mecanismos de reputación
+y gamificación de proveedores (niveles, insignias y reseñas), así como en el empaquetado de
+servicios en planes escalonados (básico, estándar y premium) y en la estructuración del flujo
+de solicitud y negociación mediante mensajería interna. Estos patrones de diseño son
+
+                                                                                                                8
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+adaptados por Nemi al contexto de servicios gastronómicos presenciales, donde la
+contratación depende de parámetros como la geolocalización del evento, el número de
+comensales y la logística física del servicio, aspectos no cubiertos por dichas plataformas.
+
+La siguiente tabla resume las funcionalidades y el nicho de mercado de las principales
+plataformas:
+
+Tabla 2.1. Plataformas líderes de referencia funcional o estratégica.
+
+ Plataforma          Foco Principal                  Brecha No Cubierta
+                                                     No facilitan la contratación de servicios por evento
+                     Entrega de alimentos a          (catering) ni la conexión directa con el proveedor bajo
+ Uber Eats/Rappi
+                     domicilio / Superapp.           filtros geolocalizados a la Ubicación del Evento (suele
+                                                     enfocarse en la dirección del usuario).
+                                                     No especializado en servicios gastronómicos efímeros y
+                     Hospedaje y experiencias de
+ Airbnb                                              no contempla la logística de contratación por evento. Se
+                     la economía colaborativa.
+                                                     enfoca en experiencias ya preparadas.
+                     Contratación de servicios       No opera con servicios presenciales ni contempla la
+ Fiverr/Freelancer   digitales y profesionales       logística física ni la georreferenciación del evento; se
+                     bajo demanda.                   limita a la entrega digital de servicios.
+                                                     Especialización y georreferenciación. Se enfoca en un
+                     Contratación de Taquizas y
+ Nemi                                                nicho de alta demanda social, optimizando la búsqueda
+                     Parrilladas a Domicilio.
+                                                     y la construcción de confianza para servicios por evento.
+
+
+
+Los referentes analizados confirman la alta demanda por marketplaces de servicios en México,
+pero ninguno atiende la necesidad específica de contratar taquizas a domicilio con filtros de
+búsqueda optimizados para eventos y un enfoque riguroso en UX y accesibilidad. Nemi se
+perfila para llenar esta brecha al combinar las mejores prácticas de la economía colaborativa
+(confianza y reseñas) con la especialización en un servicio de alto valor cultural.
+
+
+
+
+                                                                                                                 9
+       Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                   Diseño y Desarrollo de la Aplicación Web Nemi
+
+
+3. Objetivos concretos y metodología de trabajo
+
+
+3.1. Objetivo general
+
+
+
+Modelar e implementar una Aplicación Web tipo marketplace, denominada Nemi, que
+conecte eficientemente a proveedores de servicios gastronómicos con consumidores en
+México, aplicando principios avanzados de Diseño de Interfaz de Usuario (UI) y Experiencia de
+Usuario (UX) para establecer un punto de encuentro geolocalizado que fomente la confianza
+y mitigue la informalidad y la ineficiencia logística del sector.
+
+
+
+3.2. Objetivos específicos
+
+
+
+Analizar el Estado del Arte y realizar un benchmarking de plataformas de servicios bajo
+demanda para identificar los requisitos funcionales de la conexión geolocalizada y los
+mecanismos de reputación digital, tomando como referencia las tendencias de gamificación
+ligera y microinteracciones.
+
+Definir la arquitectura de la información y el Sistema de Diseño completo para la Aplicación
+Web, justificando las decisiones de UI/UX con base en las Heurísticas de Nielsen y los
+estándares de Accesibilidad Web (WCAG).
+
+Desarrollar la aplicación web Front-End utilizando la librería ReactJS, implementando
+funcionalidades de geolocalización (ubicación del evento), perfiles y el Flujo de Gestión de
+Solicitudes (cambio de estados), y simulando la lógica del servidor (Back-End) mediante una
+API.
+
+
+
+
+                                                                                                                 10
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+Evaluar la usabilidad y la eficacia de las características innovadoras (diseño responsivo y
+accesibilidad) mediante la realización de Test de Usabilidad, y realizar el despliegue público de
+la aplicación para su demostración.
+
+Cuantificar el coste de implantación y producción del proyecto, y documentar el proceso
+completo de desarrollo en el documento de TFM, incluyendo la elaboración del Artículo de
+investigación y el Manual básico de usuario.
+
+
+
+
+3.3. Metodología del trabajo
+
+
+
+La metodología de trabajo se seleccionó con el objetivo de gestionar de forma efectiva la
+incertidumbre y la naturaleza iterativa inherente al diseño y desarrollo de interfaces de
+usuario. Dada la naturaleza dinámica de los proyectos de Front-End y el énfasis en el feedback
+continuo sobre la usabilidad, se ha elegido el marco de trabajo ágil Scrum. Su proceso se basa
+en el empirismo, fundamentado en la observación, la experiencia y la experimentación, lo que
+permite la adaptación constante del producto. La justificación de este marco se fundamenta
+en su capacidad para abordar problemas complejos de manera productiva y creativa
+(Scrum.org, s.f.).
+
+
+
+3.3.1. Justificación de la Metodología Scrum
+
+
+
+La elección de Scrum se justifica por los siguientes puntos, que se alinean con los objetivos del
+proyecto Nemi y los requerimientos del TFM:
+
+    •   Enfoque al usuario y diseño moderno: El marco permite la adaptación del producto
+        según la retroalimentación recibida en cada ciclo. Dado que el proyecto requiere
+
+
+                                                                                                              11
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+        pruebas constantes de elementos como la accesibilidad (WCAG) y el diseño
+        responsivo, los ciclos cortos de los Sprints garantizan la mejora continua y la eficiencia
+        de la interfaz.
+   •    Gestión de la incertidumbre: Ante el riesgo de cambios en funcionalidades de flujos
+        críticos (como el de solicitud de servicio y los filtros de búsqueda), Scrum facilita el
+        ajuste de prioridades en el Product Backlog y la detección temprana de errores.
+   •    Entrega de valor incremental: La metodología garantiza la entrega de valor de forma
+        regular, lo que permite al equipo inspeccionar y adaptar el producto, generando
+        mejoras continuas y aprendizajes en cada Sprint.
+   •    Organización del equipo: El tamaño reducido del equipo (Scrum Team) facilita la
+        comunicación, la sincronización y la responsabilidad compartida, lo cual es vital para
+        la velocidad en la toma de decisiones.
+
+
+
+
+3.3.2. Roles del Scrum Team
+
+
+
+El equipo se organiza en torno a los tres roles definidos por la metodología Scrum:
+
+Tabla 3.2. Roles del equipo Scrum y asignación de miembros.
+
+ Rol Scrum            Integrantes            Responsabilidades clave en el proyecto Nemi
+                      asignados
+                                             Maximizar el valor del producto, definir la visión del proyecto y
+ Product Owner        Miembro A              gestionar la priorización del Product Backlog (funcionalidades y
+                                             Sprints).
+                      Miembro B              Facilitar los eventos Scrum, asegurar que el equipo respete los
+ Scrum Master
+                                             plazos (timeboxes) y remover obstáculos en el desarrollo.
+ Development          Miembro A, B y C       Entregar el incremento de producto utilizable al final de cada
+ Team                                        Sprint, manteniendo la calidad técnica y el diseño.
+                                             Funciones Específicas
+                                             Encargado del desarrollo principal con ReactJS, implementación
+ Líder Front-End &    Miembro A              de la geolocalización a la Ubicación del Evento, y la simulación de
+ Investigación
+                                             la API para el Flujo de Gestión de Solicitudes.
+
+
+
+
+                                                                                                              12
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+
+                                             Responsable del diseño del sistema, prototipos (wireframes),
+ Diseño UX/UI &       Miembro B              justificación de las decisiones de diseño con base en las Heurísticas
+ Sistema                                     de Nielsen y los estándares WCAG. Lidera la definición de la
+                                             Arquitectura de la Información.
+
+ QA,   Testing   &                           Responsable de la documentación completa y la cuantificación del
+                      Miembro C              Coste de implantación. Lidera el plan de pruebas de usabilidad y la
+ Documentación
+                                             validación de criterios de aceptación del diseño.
+
+
+
+
+3.3.3. Artefactos y eventos
+
+
+
+El trabajo se estructurará alrededor de los tres artefactos y cinco eventos de Scrum:
+
+
+Artefactos:
+
+
+   •    Product Backlog: Lista priorizada de funcionalidades requeridas para el producto,
+        incluyendo registro/Login, perfiles de taqueros, accesibilidad, y filtros inteligentes.
+   •    Sprint Backlog: Lista de tareas seleccionadas del Product Backlog que el equipo se
+        compromete a completar durante un Sprint.
+   •    Increment: El producto utilizable y potencialmente desplegable que se entrega al
+        finalizar cada Sprint.
+
+
+Eventos (ciclo de Sprint):
+
+
+   •    Sprint: El contenedor de trabajo de duración fija (máximo un mes).
+   •    Sprint Planning: Reunión para definir lo que se va a construir y hacer.
+   •    Daily Scrum: Reuniones diarias de 15 minutos para sincronizar al equipo.
+   •    Sprint Review: Presentación de los Incrementos a los stakeholders para recibir
+        retroalimentación.
+   •    Sprint Retrospective: Evento de reflexión del equipo sobre el Sprint que terminó, con
+        el objetivo de definir cómo mejorar en el próximo.
+                                                                                                                13
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+
+
+
+3.3.4. Plan de trabajo (Diagrama de Gantt)
+
+Tabla 3.3. Desglose de tareas por fase y entregables clave.
+
+     Fase                        Tarea                            Responsable                 Inicio      Fin
+
+                     Fase 1: Fundamentación y
+                                                                                             13-nov     23-nov
+                           Marco Teórico
+
+                                                          Miembro C: Development
+                    Introducción, Justificación y
+                                                            Team / QA, Testing y             13-nov     20-nov
+                             Objetivos
+                                                              Documentación
+
+                                                        Miembro A: Product Owner /
+                     Investigación de Estado del
+ I. Planeación                                              Líder Front-End e                13-nov     20-nov
+                        Arte y Benchmarking
+   y Contexto                                                 Investigación
+
+                                                         Miembro B: Scrum Master /
+                        Metodología Scrum y
+                                                            Arquitecto Visual y              14-nov     20-nov
+                      Diagrama de Gantt inicial
+                                                             Diseñador UX/UI
+
+                                                          Miembro C: Development
+                       Integración de Fase 1 y
+                                                            Team / QA, Testing y             21-nov     23-nov
+                            Formato APA
+                                                              Documentación
+
+                     Fase 2: Sistema de Diseño y
+                                                                                             24-nov      22-dic
+                             Arquitectura
+
+                                                        Miembro A: Product Owner /
+                   Arquitectura de Información y
+                                                            Líder Front-End e                24-nov      07-dic
+                           Flujos Críticos
+                                                              Investigación
+
+                                                          Miembro D: Development
+                   Prototipado de Baja Fidelidad
+   II. Diseño                                               Team / Prototipado               24-nov      22-dic
+                           (Wireframes)
+      UX/UI                                                    (wireframes)
+
+                                                         Miembro B: Scrum Master /
+                         Foundations: Paleta,
+                                                            Arquitecto Visual y              01-dic      11-dic
+                       Tipografía e Iconografía
+                                                             Diseñador UX/UI
+
+                                                         Miembro B: Scrum Master /
+                        Justificación Técnica y
+                                                            Arquitecto Visual y              07-dic      14-dic
+                        Comprobación WCAG
+                                                             Diseñador UX/UI
+
+
+
+                                                                                                                14
+   Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                               Diseño y Desarrollo de la Aplicación Web Nemi
+
+
+                        Documentación de                 Miembro C: Development
+                     Componentes UI y Voice &              Team / QA, Testing y             11-dic      18-dic
+                             Tone                            Documentación
+
+                                                         Miembro C: Development
+                    Integración Final de Memoria
+                                                           Team / QA, Testing y             19-dic      22-dic
+                               Fase 2
+                                                             Documentación
+
+
+El marco Scrum se complementará con un plan de trabajo visual, utilizando el Diagrama de
+Gantt. Este diagrama es fundamental para:
+
+       Visibilidad y control: Proporcionar una visión clara de las actividades, plazos,
+       dependencias y recursos necesarios para completar el proyecto de manera efectiva y
+       eficiente.
+       Identificación de riesgos: Mostrar las tareas en forma de barras en una línea de tiempo,
+       ayudando a identificar posibles cuellos de botella o retrasos.
+
+El Plan de Trabajo se dividirá en Sprints, y cada Sprint se enfocará en entregar un Increment
+alineado a los Objetivos Específicos, por ejemplo: Sprint de Diseño del sistema, Sprint de
+Implementación de geolocalización.
+
+
+
+
+4. Desarrollo especifico de la contribución
+
+
+La fase de ejecución técnica y creativa del proyecto Nemi consiste en la transformación de los
+objetivos estratégicos en soluciones de interfaz tangibles y funcionales. Este proceso se
+fundamenta en una metodología de diseño centrado en el usuario (DCU), la cual permite
+transitar desde la abstracción de las necesidades del mercado hacia la construcción de una
+arquitectura sólida y un sistema de diseño escalable, siguiendo los principios de ergonomía de
+                                                                                                             15
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+la interacción persona-sistema (ISO 9241-210, 2019). La articulación de estos elementos
+asegura que la plataforma no solo sea estéticamente coherente, sino que responda con
+precisión a los estándares de usabilidad y accesibilidad exigidos en el ámbito del desarrollo
+front-end contemporáneo (W3C, 2018).
+
+La estructura de la contribución refleja el flujo real de trabajo orientado a la resolución de
+problemas de diseño a través de procesos sistemáticos. Inicialmente, se establece la
+identificación de requisitos funcionales y no funcionales, los cuales actúan como las directrices
+normativas del sistema de acuerdo con los modelos de requerimientos de usuario (Interaction
+Design Foundation, s.f.-a). Posteriormente, la organización de la jerarquía de contenidos y los
+flujos de interacción críticos permiten definir la Arquitectura de la Información necesaria para
+la operatividad del marketplace. por último, la consolidación del Sistema de Diseño detalla los
+fundamentos visuales y la guía de estilo que garantizan la consistencia y la integridad de la
+experiencia de usuario en todos los puntos de contacto de la aplicación, basándose en los
+principios de consistencia y estándares de interfaz (Nielsen, 1994).
+
+
+
+   4.1. Identificación de requisitos
+
+La identificación de requisitos constituye la base fundamental del Diseño centrado en el
+usuario (DCU), asegurando que el sistema Nemi aborde problemas reales y satisfaga las
+necesidades específicas de su audiencia. Este proceso no se limita a la recolección de deseos
+del usuario, sino que se enmarca dentro de una evaluación sistemática para establecer,
+comprender y especificar los requisitos del sistema antes de iniciar cualquier desarrollo,
+siguiendo los principios de ergonomía de la interacción persona-sistema estipulados en la
+norma ISO 9241-210 (2019). Bajo este marco metodológico, se cuidó que cada funcionalidad
+fuera validable y estuviera alineada con la propuesta de valor del marketplace, permitiendo
+una cuantificación posterior del coste de implantación y producción del proyecto.
+
+El análisis de requisitos fue dirigido por la identificación de dos flujos críticos de usuario que
+definen la operatividad y la eficiencia logística de la plataforma. Estos flujos, detallados
+posteriormente en la Arquitectura de la Información, son la búsqueda de proveedores por
+
+                                                                                                              16
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+geolocalización y el Flujo de Gestión de Solicitudes (FGS). La precisión en el mapeo de estos
+caminos de interacción resultó esencial para transformar las necesidades ambiguas en
+requisitos funcionales concretos, permitiendo que el desarrollo de la interfaz responda a una
+lógica de uso eficiente y sin fricciones en la navegación, fundamentada en las metodologías
+de definición de requerimientos de usuario (Interaction Design Foundation, s.f.-a).
+
+En cuanto a los requerimientos de funcionamiento, el requisito funcional primario se centra
+específicamente en la localización y la visibilidad del proveedor. Este requisito exige que el
+sistema posea la capacidad técnica para solicitar y procesar el permiso de geolocalización del
+cliente con el fin de mostrar resultados relevantes según la cercanía geográfica a la ubicación
+del evento en tiempo real. Debido a que la efectividad de Nemi depende directamente de la
+proximidad para reducir incertidumbres logísticas, la aplicación debe manejar las opciones de
+concesión y denegación de permisos con absoluta claridad, siguiendo los estándares de
+transparencia en la recolección de datos de ubicación (Interaction Design Foundation, s.f.-b).
+En caso de que el usuario opte por no compartir su ubicación automática, el sistema debe
+ofrecer obligatoriamente la alternativa de ingreso manual de la dirección, garantizando que
+el flujo de búsqueda siempre pueda ser completado satisfactoriamente.
+
+Se establece como segundo requisito funcional crítico el control y la transparencia total del
+Flujo de Gestión de Solicitudes (FGS). Este flujo impone la necesidad de un sistema de
+comunicación bidireccional que gestione de forma integral la solicitud inicial del cliente, la
+cotización detallada por parte del proveedor, la fase de negociación de insumos y la
+confirmación final del servicio. Para mitigar la desconfianza propia de la contratación de
+servicios informales, este requisito exige que la interfaz mantenga siempre visible el estado
+de la solicitud para ambos perfiles de usuario, fortaleciendo la trazabilidad y la confianza
+mutua durante todo el proceso de negociación, conforme a los criterios de visibilidad del
+estado del sistema de (Nielsen, 1994).
+
+Se identificaron requisitos no funcionales que rigen el diseño visual y la interacción del
+sistema, los cuales justifican la implementación de un sistema de diseño robusto. La
+plataforma requiere una consistencia visual y funcional estricta para reducir la carga cognitiva
+
+
+                                                                                                              17
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+del usuario, asegurando que los componentes se comporten de manera predecible a lo largo
+de todos los flujos de navegación. Este enfoque de diseño busca que la interfaz sea intuitiva
+tanto para el cliente como para el proveedor, diferenciando sus acciones mediante una
+jerarquía visual clara apoyada en los principios de consistencia y estándares (Interaction
+Design Foundation, s.f.-b).
+
+El requisito de accesibilidad móvil es ineludible en este proyecto, obligando a que las
+especificaciones de todos los componentes interactivos, como botones y campos de texto,
+cumplan rigurosamente con los estándares de tamaño de objetivo (target size) para la
+interacción táctil. El cumplimiento de estas normas asegura que la interfaz sea usable por el
+mayor número posible de personas, independientemente de sus capacidades motrices o
+visuales, siguiendo las pautas internacionales de accesibilidad (W3C, 2018). Estos requisitos,
+en conjunto con la necesidad de proyectar una identidad visual confiable y cercana, definen
+el alcance y las directrices principales que rigen la construcción técnica de Nemi.
+
+   4.2. Arquitectura de la información
+
+La arquitectura de la información de la plataforma Nemi se fundamenta en el mapeo de flujos
+críticos de usuario, detallando la interacción tanto desde la perspectiva del cliente como del
+proveedor (taquero). Estos mapas de flujo sirven de base para implementar la navegación en
+ReactJS de forma consistente.
+
+4.2.1. Arquitectura funcional y flujos críticos
+
+En este flujo, el usuario cliente explora la plataforma para encontrar proveedores cercanos de
+servicios de taquizas y parrilladas. El proceso inicia una vez que el usuario ha ingresado a la
+aplicación (previamente registrado o autenticado) y procede de la siguiente manera:
+
+        Permiso de ubicación: Al abrir la aplicación, se solicita al usuario el permiso para
+        acceder a su ubicación. Si se concede el permiso, la aplicación obtiene la ubicación
+        actual y la utiliza como base de la búsqueda; si se deniega, se ofrece la opción de
+        ingresar una ubicación manualmente (ciudad o colonia).
+
+
+
+                                                                                                              18
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+        Visualización de resultados cercanos: Con la ubicación definida, la pantalla principal
+        muestra un listado y un mapa con los taqueros disponibles. Cada tarjeta de resultado
+        incluye: nombre del taquero/taquería, fotografía o icono, distancia aproximada,
+        calificación o badge de reputación, y una indicación breve de especialidad o precio.
+        Filtros de búsqueda: El usuario puede refinar los resultados aplicando filtros
+        inteligentes por tipo de comida, rango de precios, valoraciones o disponibilidad,
+        facilitando el hallazgo del proveedor ideal (Interaction Design Foundation, s.f.-a).
+        Selección de proveedor: Una vez ubicado un taquero de interés, se selecciona para ver
+        más detalles. El flujo conduce a la visualización del perfil completo, ya sea en una nueva
+        pantalla o en una ventana modal superpuesta, para brindar información detallada sin
+        perder el contexto de búsqueda.
+        Perfil del taquero: Se muestra la información completa: descripción de servicios, fotos
+        de eventos o platillos, menú o paquetes ofrecidos, precio estimado por evento o por
+        persona, y evaluaciones/reseñas de otros clientes. Se destacan las insignias de
+        reputación para reforzar la confianza. La interfaz utiliza la paleta de colores y
+        tipografías definidas para garantizar legibilidad y contraste.
+        Iniciar solicitud: Desde el perfil, el cliente acciona el botón “Solicitar servicio”. Al hacer
+        clic, puede aparecer una modal de confirmación antes de proceder, asegurando que el
+        usuario revisó los detalles y realmente desea contactar al proveedor.
+
+
+
+
+4.2.2. Flujo de gestión de solicitudes de servicio
+
+Este flujo cubre la interacción entre cliente y taquero desde la iniciación hasta la aceptación o
+rechazo, incluyendo las notificaciones de estado:
+
+        Formulario de solicitud: El cliente rellena un formulario con los detalles: fecha y hora
+        del evento, número de personas, ubicación del evento y notas o requerimientos
+        especiales. La interfaz sigue los lineamientos de campos claros, etiquetados adecuados
+        y validación de datos faltantes (Interaction Design Foundation, s.f.-b).
+
+
+                                                                                                              19
+   Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                               Diseño y Desarrollo de la Aplicación Web Nemi
+
+       Confirmación de envío: Al completar el formulario, se acciona “Enviar solicitud” y se
+       despliega una ventana modal de confirmación que resume la información ingresada
+       (fecha, lugar, servicio solicitado) con opciones de Confirmar o Cancelar para prevenir
+       envíos accidentales.
+       Solicitud enviada (Pendiente): Al confirmar, la solicitud se registra en estado
+       “Pendiente”. El taquero recibe inmediatamente una notificación. En la interfaz del
+       cliente, se informa el éxito del envío mediante un mensaje tipo toast o un estado en
+       su sección de solicitudes.
+       Notificación al taquero: El proveedor recibe una alerta en su panel (vía push o email) y
+       en su cuenta aparece una sección de “Solicitudes recibidas” optimizada para resaltar
+       solicitudes nuevas.
+       Revisión de detalles: El taquero revisa la fecha, hora, lugar, tamaño del evento y notas.
+       La pantalla puede mostrar un cálculo estimado (ej. “evento de 50 personas el 24 de
+       enero, 18:00 hrs”) para facilitar la decisión.
+       Respuesta del taquero: El proveedor cuenta con dos acciones: Aceptar o Rechazar. Si
+       acepta, la solicitud cambia a estado “Aceptada”. Si rechaza, puede escribir un motivo
+       opcional, cambiando el estado a “Rechazada/No disponible”.
+       Notificación al cliente: El cliente es notificado del resultado. Si es aceptada, recibe una
+       notificación o correo con los datos de contacto o pasos a seguir. En caso de rechazo,
+       se le informa la falta de disponibilidad e invita a buscar otros proveedores.
+       Confirmación final y seguimiento: Con la solicitud aceptada, la aplicación facilita el
+       intercambio de teléfono o email o abre un canal de mensajería interno.
+       Posteriormente, permite marcar la solicitud como completada y dejar una reseña.
+       Estados visibles y gestión: Ambos roles consultan el estado en sus paneles mediante
+       etiquetas claras (Pendiente, Aceptada, Rechazada) y colores semánticos, lo que aporta
+       transparencia y alimenta el sistema de reputación con insignias para el taquero (ISO
+       9241-210, 2019).
+
+4.2.3. Prototipo de baja fidelidad (wireframes)
+
+
+                                                                                                             20
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+La definición de la estructura funcional y la jerarquía de la información de los componentes
+principales del Producto Mínimo Viable (MVP) se materializa a través de bosquejos de pantalla
+(wireframes), los cuales aseguran que la navegación sea una respuesta directa a los flujos
+críticos previamente analizados. El uso de estos diseños de baja fidelidad permite centrar el
+análisis en la operatividad y la disposición de elementos fundamentales mediante formas y
+etiquetas básicas; esta aproximación facilita la iteración ágil y la obtención de
+retroalimentación técnica sin las distracciones cognitivas derivadas del estilo visual final
+(Interaction Design Foundation, s.f.-a).
+
+Bajo un enfoque mobile-first, la construcción de la interfaz se rige por un diseño responsive
+basado en una rejilla de 12 columnas y puntos de corte (breakpoints) específicos, garantizando
+la adaptabilidad del sistema en diversos dispositivos. La configuración de cada pantalla
+considera la distribución de elementos clave y el etiquetado visual en función de las
+necesidades detectadas tanto para el rol del cliente como del proveedor, asegurando que la
+arquitectura de la información sea consistente con los estándares de usabilidad y accesibilidad
+requeridos para una plataforma de servicios on-demand (Nielsen, 1994).
+
+4.2.3.1. Pantalla de bienvenida/login
+
+La pantalla de inicio de sesión representa la primera interacción del usuario con la aplicación;
+un diseño claro sienta las bases de la experiencia y mejora la retención de usuarios (Interaction
+Design Foundation, s.f.-a). En este prototipo móvil se presentan los elementos esenciales para
+el acceso y registro:
+
+        Logo y nombre de la app: Ubicados en la parte superior central para reforzar la
+        identidad de la aplicación y el reconocimiento de marca desde el primer momento.
+        Formulario de login: Se sitúan dos campos de entrada con sus etiquetas: Correo
+        electrónico (o usuario) y Contraseña. Los campos están claramente etiquetados con
+        tipografía legible e incluyen iconos y texto placeholderpara guiar al usuario.
+
+
+
+
+                                                                                                              21
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+        Botón de “Iniciar Sesión”: Se presenta un botón principal destacado (ancho completo)
+        representado como un rectángulo etiquetado. Este componente permite al usuario
+        acceder tras ingresar sus credenciales.
+        Enlaces de registro y recuperación: Bajo el botón de acceso, se muestran las opciones
+        para “¿No tienes cuenta? Regístrate” y “¿Olvidaste tu contraseña?”. El enlace de
+        registro conduce a una pantalla adicional contemplada en el MVP.
+        Opción de inicio rápido (opcional): Se incluye la posibilidad de “Continuar como
+        invitado” o iconos de loginsocial (Google/Facebook) para facilitar el acceso,
+        supeditado a la elección posterior del rol.
+
+La disposición de los elementos se estructura de forma vertical y centrada: el logotipo ocupa
+el 30% superior de la pantalla, el formulario de acceso el 40% intermedio y los enlaces
+secundarios el 30% inferior. Se mantiene un amplio uso de espacios en blanco (padding) para
+favorecer la legibilidad. Esta configuración busca ofrecer una interfaz limpia que facilite el
+inicio de sesión sin saturar al usuario (Interaction Design Foundation, s.f.-a).
+
+4.2.3.2. Pantalla principal (mapa y lista de taqueros)
+
+Tras la autenticación, el cliente accede a la vista principal que combina un mapa interactivo
+con una lista de proveedores, inspirándose en patrones de servicios on-demand. Los
+componentes principales son:
+
+        Barra de búsqueda/encabezado: En la parte superior se ubica una barra con funciones
+        de búsqueda y filtrado que incluye un campo de texto con el placeholder “Buscar
+        taquero o ubicación” y un icono de perfil para acceder a las opciones de la cuenta.
+        Vista de Mapa: Ocupando la mitad superior de la pantalla, se muestra un mapa
+        centrado en la ubicación actual del usuario. Sobre este se distribuyen marcadores
+        (pins) que representan a los proveedores cercanos, representados en baja fidelidad
+        mediante pequeños iconos.
+        Lista de Taqueros Cercanos: En la mitad inferior se dispone una lista desplazable (scroll)
+        de tarjetas. Cada una incluye: foto miniatura, nombre del negocio, calificación,
+
+
+                                                                                                              22
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+        etiqueta de “Destacado”, distancia aproximada y un extracto corto de la especialidad
+        o tarifa base.
+        Navegación/acciones adicionales: En la parte inferior se sitúa una barra de navegación
+        con iconos para Inicio, Solicitudes y Perfil. Esta barra permite al usuario (cliente o
+        proveedor) alternar entre su bandeja de pedidos y su configuración personal.
+
+Esta pantalla ofrece dos formas de exploración: visual y textual. El diseño responsive permite
+expandir la lista sobre el mapa mediante gestos en dispositivos móviles, mientras que en
+versiones de escritorio el mapa y la lista se disponen de forma lateral para maximizar la
+usabilidad en pantallas táctiles.
+
+4.2.3.3. Pantalla de perfil del taquero
+
+Cuando un usuario selecciona un taquero desde la lista o el mapa, se abre la pantalla de perfil
+del taquero. Este prototipo muestra la información detallada del proveedor de servicios de
+taquiza, incluyendo fotos, descripción y precios tal como se definió en los requisitos. La
+estructura propuesta incluye:
+
+        Foto de portada / Galería: En la parte superior se reserva un área para una imagen
+        destacada del taquero o su servicio. Podría ser una sola foto de portada amplia o un
+        carrusel de varias fotos. En baja fidelidad se representa con un gran rectángulo con el
+        texto “Foto/galería”. Esta sección visual atrae al usuario y le da confianza sobre la
+        calidad del servicio.
+        Nombre del Taquero y valoración: Debajo de la imagen, se muestra en texto grande el
+        nombre o apodo del taquero/negocio. Junto a este, se incluyen iconos de estrellas o
+        una puntuación numérica (por ejemplo: “4.8 (23 opiniones)”) indicando su reputación.
+        Estas referencias de valoración ayudan a los clientes a evaluar la confiabilidad del
+        proveedor.
+        Descripción del servicio: Un bloque de texto donde el taquero describe su oferta: por
+        ejemplo, “Más de 10 años de experiencia. Ofrecemos taquizas de pastor, bistec y
+        vegetarianas, con servicio completo (mesas, platos) y personal atento”. En el
+
+                                                                                                              23
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+        prototipo, esto se renderiza como párrafos simulados mediante líneas grises múltiples.
+        La descripción permite detallar la capacidad (número de personas que puede atender),
+        cobertura de zona y menú disponible.
+        Detalles de servicios y precios: Sección con una lista de detalles clave donde pueden
+        usarse viñetas o iconos para cada atributo. Por ejemplo: Precio base (“$X por hora/por
+        persona”) o paquetes (por ejemplo: “Paquete 50 personas - $Y”), servicios incluidos
+        (“Salsas, guarniciones, bebidas”) y opciones extra (“Parrillada disponible”). En baja
+        fidelidad, se representan como filas de texto con algún resaltado para cifras.
+        Botón “Solicitar Servicio”: Ubicado de forma fija y prominente (por ejemplo, en la parte
+        inferior de la pantalla o debajo de la descripción), funciona como un botón de llamada
+        a la acción. En el prototipo se dibuja como un botón ancho etiquetado. Al pulsarlo, el
+        cliente iniciará la solicitud de contratación de este taquero.
+        Información        adicional:      Pueden       incluirse      elementos        secundarios        como
+        disponibilidad/calendario, ubicación del taquero y distintivos de verificación. Se
+        agregan como pequeños iconos y texto breve alineados horizontalmente.
+        Navegación/volver: En la esquina superior, un icono “←” (flecha atrás) permite
+        regresar a la pantalla anterior. También se contempla un icono de compartir para
+        enviar este perfil o guardarlo en favoritos.
+
+La página de perfil está pensada para un escaneo fácil: primero la imagen, luego nombre y
+calificación, seguido de detalles y el botón de acción. Todo se organiza en una sola vista
+desplazable verticalmente. Se respeta la jerarquía visual para que el botón de “Solicitar”
+siempre quede visible tras consultar la información principal. El diseño es responsive; en
+pantallas más anchas se podría mostrar la fotografía a un lado y el texto al otro, manteniendo
+el flujo vertical para dispositivos móviles. El estilo enfatiza el contenido sobre la estética,
+asegurando que los elementos clave estén presentes claramente.
+
+4.2.3.4. Formulario de solicitud de servicio
+
+
+
+
+                                                                                                              24
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+Cuando el cliente pulsa “Solicitar servicio” en el perfil de un taquero, se muestra un formulario
+para completar los detalles de la solicitud. Esta pantalla permite al usuario ingresar la
+información necesaria para concretar su pedido sin incluir pagos en línea (la app solo gestiona
+la solicitud). El wireframe en móvil contiene los siguientes campos y controles:
+
+        Encabezado y ayuda: En la parte superior, un título claro “Solicitar Servicio” o “Nueva
+        Solicitud” indica la acción en curso. Puede incluir un breve texto instructivo (por
+        ejemplo: “Completa los detalles de tu evento”) para guiar al usuario. Un icono “X” o
+        “←” permite cancelar y volver al perfil si decide no continuar.
+        Campo Fecha del evento: Un campo para seleccionar la fecha de la taquiza. Etiquetado
+        como “Fecha del evento”, al tocarlo podría desplegar un calendario (en el wireframe
+        se indica con un rectángulo y un ícono de calendario dentro). Es un campo obligatorio
+        para que el taquero sepa cuándo se requiere el servicio.
+        Campo Hora del evento: Similar al anterior, para especificar la hora de inicio (y
+        posiblemente duración). Puede mostrarse separado como “Hora” con un icono de
+        reloj. Alternativamente, Fecha y Hora podrían combinarse en un solo selector
+        dependiendo de la UI, pero en baja fidelidad listarlos separados deja claro ambos
+        datos.
+        Campo Ubicación/Dirección: Un campo de texto para la dirección o ubicación donde
+        se realizará el evento. Etiquetado como “Ubicación” o “Dirección”. Podría tener un
+        icono de mapa indicando posibilidad de abrir un mapa o autocompletar. En el
+        wireframe, un rectángulo largo representa este input. Es crucial para que el taquero
+        sepa adónde ir, y podría aprovechar geolocalización en la app (pero aquí se asume
+        entrada manual o buscador de dirección).
+        Campo Detalles del evento: Un campo de texto multilínea (textarea) etiquetado “Notas
+        o requerimientos”. Aquí el cliente puede agregar información adicional: número de
+        invitados, preferencias (ej. “solo tacos de bistec y pastor, sin picante para niños”), o
+        cualquier instrucción especial. En el wireframe se dibuja como un rectángulo grande
+        con líneas simulando texto dentro. Es opcional pero útil para personalizar la solicitud.
+
+
+                                                                                                              25
+   Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                               Diseño y Desarrollo de la Aplicación Web Nemi
+
+       Botón Enviar Solicitud: Al final del formulario, un botón principal “Enviar solicitud”
+       permite confirmar y mandar la petición al taquero. Debe estar inactivo si faltan datos
+       obligatorios. En el wireframe se muestra como un rectángulo etiquetado. Este botón
+       al ser pulsado disparará un flujo de confirmación.
+       Validaciones (indicadas someramente): Aunque en baja fidelidad no se muestran
+       mensajes de error explícitos, se dejan espacios para posibles validaciones. Por
+       ejemplo, si el usuario deja la fecha vacía, el campo podría resaltarse en alta fidelidad.
+       Consideraciones de usabilidad: Todos los campos tienen etiquetas visibles y se apilan
+       con suficiente separación para tocar y rellenar cómodamente. Es recomendable
+       ordenar lógicamente: primero cuándo, luego dónde, luego detalles adicionales.
+
+El diseño visual se basa en un formulario simplificado con una disposición de un elemento por
+línea, priorizando el uso de espacios en blanco para evitar la saturación del usuario. En
+dispositivos móviles, la interfaz genera un desplazamiento (scroll) corto incluso ante la
+presencia de diversos campos. Para optimizar la claridad, los elementos se agrupan en las
+secciones “Cuándo” (Fecha y Hora) y “Detalles” (Ubicación y Notas).
+
+Mientras que en pantallas de mayor escala los campos pueden distribuirse en dos columnas
+(por ejemplo, Fecha y Hora de forma lateral), en la versión móvil se mantiene una columna
+vertical única para favorecer la usabilidad. La ausencia de pasarelas de pago o campos
+financieros reduce la extensión del formulario, permitiendo que el usuario complete la
+solicitud mediante un proceso breve, rápido y directo.
+
+4.2.3.5. Pantalla de solicitudes (enviadas/recibidas)
+
+Esta pantalla permite gestionar las solicitudes de servicio, actuando como bandeja de entrada
+y salida de pedidos según el rol del usuario. Dado que la plataforma no procesa pagos, la
+gestión de estados es fundamental. El prototipo muestra una vista adaptable tanto para
+cliente como para proveedor:
+
+
+
+
+                                                                                                             26
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+        Encabezado con pestañas de filtro: Un título de “Solicitudes” con dos botones de
+        segmento para alternar entre “Enviadas” y “Recibidas”. Si el usuario solo posee un rol,
+        la interfaz muestra directamente su lista correspondiente, pero incluir ambas pestañas
+        deja claro el cambio de contexto.
+        Lista de solicitudes: Bajo el filtro, se lista cada solicitud como una tarjeta resumida que
+        incluye el identificador del evento (nombre de la contraparte), fecha del evento
+        solicitada y estatus actual. Se puede incluir un icono visual según el estado. En baja
+        fidelidad, se dibuja mediante líneas de título, detalles y una etiqueta o chip para el
+        estado.
+        Acciones en solicitudes (según rol): Para clientes la vista es principalmente informativa,
+        con opción de cancelar si la solicitud sigue pendiente. Para taqueros, cada solicitud
+        nueva presenta botones de “Aceptar” y “Rechazar” directamente en la tarjeta. Una vez
+        ejecutada la acción, los controles desaparecen y solo se muestra el estado resultante.
+        Navegación: Se integra una barra inferior donde el icono de Solicitudes permanece
+        resaltado, permitiendo navegar hacia el Inicio o al Perfil fácilmente.
+
+La interfaz está diseñada para listar y organizar información de estado de forma vertical. Se
+utiliza texto breve y códigos de color o iconos para que el usuario identifique rápidamente las
+solicitudes pendientes o confirmadas. La separación por pestañas asegura que el usuario no
+se confunda entre las solicitudes realizadas y las recibidas, lo cual es vital para la transparencia
+del proceso de contratación (ISO 9241-210, 2019).
+
+   4.3. El proceso de diseño
+
+El diseño de la interfaz de usuario para Nemi se fundamenta en la creación de un sistema
+visual coherente que garantice accesibilidad, consistencia y una experiencia centrada en el
+usuario. Para ello, se aplican principios de usabilidad y estándares internacionales que
+permiten construir una interfaz intuitiva y funcional. Este proceso considera directrices como
+las Pautas de accesibilidad para el contenido Web (WCAG 2.1), que establecen criterios para
+asegurar la percepción, operabilidad y comprensión del contenido (W3C, 2018), así como las
+heurísticas de diseño propuestas por Nielsen (1994), orientadas a la consistencia, visibilidad y
+
+                                                                                                              27
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+control del usuario. Además, se adopta un enfoque mobile-first (Wroblewski, 2011) y se
+incorporan fundamentos esenciales del sistema de diseño: paleta de colores, tipografía,
+iconografía, espaciado, layout y componentes, los cuales se justifican con base en buenas
+prácticas de diseño y accesibilidad.
+
+4.3.1. Principios y valores del sistema de diseño
+
+La arquitectura visual y funcional de Nemi se rige por un conjunto de principios rectores que
+transforman los objetivos de negocio en decisiones de diseño tangibles. Estos principios
+actúan como el marco ético y operativo que garantiza la integridad de la experiencia del
+usuario en cada punto de contacto. El sistema se fundamenta en la confianza y seguridad,
+valores críticos para un marketplace que gestiona servicios gastronómicos a domicilio. Esta
+confianza se proyecta a través de una interfaz que prioriza la transparencia en los procesos de
+cotización y la visibilidad constante del estado del servicio, reduciendo la incertidumbre
+inherente a las transacciones entre particulares (Nielsen Norman Group, 2025).
+
+Asimismo, el sistema adopta la claridad y simplicidad como pilares para mitigar la carga
+cognitiva. Dado que la plataforma atiende a dos perfiles de usuario distintos (clientes y
+proveedores de servicios), el diseño debe facilitar una navegación intuitiva que diferencie
+claramente las acciones de cada rol. Este enfoque se alinea con el principio de consistencia
+funcional, asegurando que los patrones de interacción sean predecibles y fáciles de aprender.
+Finalmente, se integra el valor de la cercanía y valor cultural, utilizando elementos visuales y
+un lenguaje que resuenen con la identidad local del servicio, humanizando la tecnología para
+fomentar una comunidad de intercambio comercial fluida y empática.
+
+4.3.2. Fundamentos del sistema de diseño (design foundations)
+
+Los fundamentos del sistema de diseño constituyen el conjunto de elementos visuales y reglas
+técnicas primarias que otorgan identidad y coherencia a la interfaz de Nemi. Estas bases no
+solo definen la estética del producto, sino que aseguran que cada decisión visual esté
+respaldada por criterios de accesibilidad y rendimiento. Siguiendo la metodología de Diseño
+Atómico (Atomic Design), estos fundamentos se clasifican como los "átomos" del sistema, ya
+
+
+                                                                                                              28
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+que representan las partículas mínimas e indivisibles que, al combinarse, dan origen a
+componentes más complejos (Frost, 2016).
+
+La implementación de estos fundamentos permite la creación de un lenguaje visual
+compartido que facilita la escalabilidad del sistema a medida que la plataforma incorpora
+nuevas funcionalidades. La estructura del sistema se basa en la adopción de patrones de
+diseño de interacción establecidos en marketplaces y aplicaciones de servicio móvil, lo cual
+minimiza la curva de aprendizaje y garantiza que la interfaz se base en convenciones de la
+industria que el usuario ya reconoce (Nielsen, 1994). Este apartado detalla la configuración
+técnica de la paleta cromática, la jerarquía tipográfica, la iconografía y las reglas de
+composición espacial, garantizando que el diseño mantenga una estructura lógica y una
+navegación fluida en entornos móviles.
+
+
+
+4.3.2.1. Paleta de colores
+
+La selección cromática de Nemi trasciende la estética para constituirse como una herramienta
+de comunicación funcional y psicológica, orientada a generar una atmósfera de confianza y
+profesionalismo. Con base en los principios de la psicología del color, se ha definido una paleta
+que equilibra la identidad cultural del servicio con el rigor técnico necesario para la legibilidad
+digital (Heller, 2004). Esta estructura busca consolidar en el usuario una percepción de alto
+valor cultural, seguridad y navegación intuitiva.
+
+Como primer color primario, el sistema utiliza el Verde (#00B894). Este tono se selecciona por
+sus cualidades intrínsecas de calma, frescura y armonía, remitiendo directamente a
+ingredientes esenciales de la gastronomía mexicana como el cilantro y el aguacate. Su
+implementación no solo refuerza la identidad visual del servicio, sino que proyecta la
+seguridad y confianza necesarias para un marketplace de servicios.
+
+El segundo color primario es el Gris oscuro (#2D3436), el cual se fundamenta en la búsqueda
+de sofisticación y profesionalismo. Al evitar el uso de un negro puro, este tono ofrece una
+estética más amable y elegante para la tipografía de cuerpo y títulos, asegurando una lectura
+
+
+                                                                                                              29
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+confortable y reduciendo significativamente la fatiga visual del usuario durante periodos
+prolongados de navegación.
+
+En cuanto a la jerarquía de colores secundarios, el sistema incorpora cuatro tonalidades con
+funciones específicas. El Rojo (#D63031) se emplea para representar la pasión cultural y
+estimular el apetito, aplicándose estratégicamente en botones de llamada a la acción (CTA)
+para orientar el flujo de forma inductiva. El Amarillo (#FFD54F) se asocia con la prosperidad y
+cercanía, utilizándose para resaltar ofertas, precios y elementos de valor que requieran la
+atención inmediata del usuario.
+
+Como soporte a la estructura visual, se añade el Gris Neutro (#4F4F4F), destinado a acentuar
+elementos de navegación secundaria y tarjetas de contenido sin abrumar la percepción visual.
+También, el Gris Claro (#F5F5F5) actúa como fondo neutro o superficie de base, lo que facilita
+el balance visual y permite que los elementos de interacción resalten correctamente,
+siguiendo los patrones de diseño de Apple Inc. (s. f.), IBM (s. f.) y Google (s. f.).
+
+Finalmente, el sistema integra colores semánticos para la retroalimentación funcional
+obligatoria en una interfaz de alta complejidad. El Verde Esmeralda (#55EFC4) se reserva para
+estados de éxito y confirmación de procesos; el Rojo Alerta (#D63031) se utiliza
+exclusivamente para mensajes de error o acciones destructivas; y el Azul (#74B9FF) se emplea
+para estados informativos o notificaciones de soporte técnico. Esta clasificación garantiza que
+cada estado del sistema sea reconocible visualmente de forma inmediata (Nielsen, 1994).
+
+Para garantizar que la aplicación sea inclusiva y accesible para todos los usuarios, todas las
+combinaciones cromáticas han sido validadas bajo la norma WCAG 2.1, cumpliendo con el
+nivel AA de contraste (W3C, 2018).
+
+
+
+Tabla 4.1. Clasificación detallada de la paleta cromática y validación de contraste WCAG 2.1
+
+ Categoría       Uso del Color                     Código HEX         Contraste        Cumplimiento (AA)
+ Primario        Identidad (Menta)                 #00B894            5.1:1            Cumple
+ Primario        Texto (Gris Oscuro)               #2D3436            12.6:1           Cumple (AAA)
+
+
+                                                                                                              30
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+ Secundario      Acción / CTA (Rojo)               #D63031            4.8:1            Cumple
+ Secundario      Resaltado (Amarillo)              #FFD54F            8.9:1            Cumple
+ Secundario      Navegación (Gris Neutro)          #4F4F4F            3.2:1            Cumple (Gráficos)
+ Secundario      Fondo (Gris Claro)                #F5F5F5            19.2:1           Cumple
+ Semántico       Éxito (Verde Esmeralda)           #55EFC4            4.5:1            Cumple
+ Semántico       Error (Rojo Alerta)               #D63031            4.8:1            Cumple
+ Semántico       Informativo (Azul)                #74B9FF            4.6:1            Cumple
+
+Nota: Elaboración propia basada en las pautas de accesibilidad para contenido web (W3C, s.f.).
+
+Figura 1. Muestra visual de la paleta de colores primarios, secundarios y semánticos de Nemi
+
+
+
+
+Nota: Elaboración propia basada en las pautas de accesibilidad para contenido web (W3C, s.f.).
+
+
+
+
+4.3.2.2. Tipografía
+
+La arquitectura tipográfica de Nemi se ha configurado como un eje determinante para
+garantizar la legibilidad y la eficiencia comunicativa en una interfaz orientada al comercio de
+servicios. La selección y estructuración de las familias tipográficas no responde únicamente a
+criterios estéticos, sino que busca establecer una jerarquía visual clara que minimice la carga
+cognitiva y facilite el escaneo de información crítica en dispositivos móviles. De acuerdo con
+los principios de consistencia y estándares de interfaz (Nielsen, 1994), el sistema tipográfico
+asegura que el usuario identifique de forma intuitiva las acciones principales, las descripciones
+de servicios y los estados de navegación, fortaleciendo la confianza a través de una
+presentación de datos profesional y organizada.
+
+Para lograr este equilibrio entre identidad visual y funcionalidad, el sistema se fundamenta en
+el uso de fuentes optimizadas para la lectura en pantalla y en la implementación de una escala
+
+
+                                                                                                              31
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+modular matemática. Esta rigurosidad técnica permite que la plataforma cumpla con los
+estándares internacionales de accesibilidad para el contenido web (W3C, 2018), asegurando
+que el interlineado, el contraste y el dimensionamiento de los caracteres faciliten una
+navegación inclusiva. La integración de estas directrices garantiza que la voz visual de Nemi
+sea coherente en todos los puntos de contacto, adaptándose con precisión a las diversas
+resoluciones y condiciones de uso del entorno digital.
+
+4.3.2.2.1. Selección de familias tipográficas y fundamentos
+
+La construcción visual del logotipo y la identidad de la plataforma requiere de una tipografía
+con ángulos definidos para facilitar el diseño de formas geométricas modernas. Por esta razón,
+se seleccionó la familia tipográfica Poppins, una tipografía sans serif geométrica, la cual se
+caracteriza por formas limpias que proyectan una imagen moderna y juguetona. Gracias a la
+limpieza de su estructura, Poppins ofrece una alta versatilidad y legibilidad en diversos
+formatos. Según Lupton (2014), este tipo de fuentes geométricas son ideales para
+encabezados debido a su claridad estructural.
+
+La limpieza de su estructura asegura una alta legibilidad en diversos formatos y dimensiones.
+El objetivo principal es transmitir tonos amigables y distintivos para que el usuario perciba
+cercanía con el servicio. Para cumplir con este propósito, se utiliza específicamente la variante
+Poppins Semi bold en el logotipo de la aplicación. De acuerdo con Lupton (2014), el uso de
+pesos seminegritos en tipografías geométricas refuerza la presencia de marca y garantiza que
+la identidad visual sea memorable y funcional en entornos digitales.
+
+Como complemento para el cuerpo de texto y elementos de lectura prolongada, se emplea la
+familia Inter, la cual se clasifica como una fuente neo-grotesca geométrica dentro de las
+tipografías Sans Serif. El diseño de esta tipografía está específicamente optimizado para
+maximizar la legibilidad en interfaces digitales y pantallas de diversos dispositivos móviles.
+
+Inter destaca por su capacidad de mantener una armonía visual constante, tanto en bloques
+de texto extensos como en micro-copias de la interfaz. De acuerdo con las especificaciones de
+Google Fonts (s. f.), esto se logra gracias a una altura de x equilibrada (altura de las letras
+
+                                                                                                              32
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+minúsculas respecto a las mayúsculas) y un diseño de glifos que facilita el reconocimiento de
+caracteres, lo cual es fundamental para prevenir la fatiga visual del usuario en entornos con
+alta densidad de información. Su implementación asegura que la comunicación de datos en la
+aplicación sea fluida y profesional en cualquier resolución de pantalla.
+
+4.3.2.2.2. Implementación de la escala modular y jerarquía visual
+
+La organización de los niveles de texto en la interfaz no se realiza de forma arbitraria, sino que
+se rige por una escala tipográfica modular. Este sistema permite definir todos los tamaños de
+letra bajo una proporción fija y matemática, lo cual es fundamental para asegurar la
+coherencia estética y facilitar el diseño responsivo, evitando que los textos pierdan su
+jerarquía o generen desbordes visuales en dispositivos con dimensiones reducidas.
+
+Para este proyecto, se ha seleccionado una relación armónica de 1.25 (Major Third), utilizando
+como punto de partida un tamaño base de 16 px. La elección de la escala Major Third responde
+a la necesidad de obtener un contraste moderado y profesional; tras analizar diversas
+opciones, se determinó que esta proporción ofrece un equilibrio superior frente a otras
+razones matemáticas, resultando más versátil que la Minor Third (1.2) y más contenida que la
+Perfect Fourth (1.333). De acuerdo con los principios de legibilidad en interfaces digitales, el
+uso de escalas modulares garantiza una estructura visual lógica que el ojo humano percibe
+como organizada (Interaction Design Foundation, s.f.).
+
+El cálculo técnico para determinar cada nivel jerárquico dentro de la aplicación se realiza
+mediante la aplicación de la fórmula de escala modular:
+
+                    Tamaño de elemento=Tamaño Base × (Relación) ^ Potencia
+
+A través de esta metodología, se asegura que cada salto entre el texto base y los encabezados
+tenga una progresión armónica. Por ejemplo, para obtener el tamaño de un encabezado de
+nivel superior (H1), se aplica el cálculo 16 px×1.254, resultando en 39.06 px. Este rigor
+matemático permite que el usuario distinga rápidamente la importancia de la información,
+
+
+
+                                                                                                              33
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+optimizando la estructura visual de la plataforma bajo estándares profesionales de diseño de
+sistemas (Google, s. f.).
+
+4.3.2.2.3. Determinación de pesos visuales para la accesibilidad
+
+La configuración de los grosores tipográficos en la interfaz responde a la necesidad de
+establecer una estructura visual clara que agilice la navegación y optimice la experiencia del
+usuario. La aplicación estratégica de diferentes pesos permite dirigir la atención hacia los
+puntos de interacción críticos, garantizando que los datos de mayor relevancia se identifiquen
+de forma inmediata. Este principio de "énfasis por peso" es fundamental para establecer una
+jerarquía visual que guíe el escaneo ocular en plataformas digitales, permitiendo al usuario
+procesar la información de manera eficiente (Lidwell, Holden y Butler, 2010).
+
+Con el fin de asegurar una legibilidad superior, se ha implementado una composición que
+sigue los criterios de contraste y visibilidad definidos en la norma ISO 9241-210 (2019),
+logrando una distinción precisa que beneficia la lectura bajo diversas condiciones de pantalla.
+Para el logotipo y los encabezados de primer nivel (H1), se utiliza el peso Bold (700), lo cual
+otorga una presencia visual sólida que facilita el reconocimiento de la identidad de marca. Los
+encabezados de sección (H2) emplean la variante Semibold (600), mientras que los subtítulos
+de apoyo (H3) se definen con un peso Medium (500).
+
+Esta degradación controlada asegura una transición lógica entre los estratos de información,
+reduciendo la carga cognitiva del usuario al organizar el contenido de manera intuitiva.
+Finalmente, el cuerpo de texto y los elementos complementarios se presentan en peso
+Regular (400). Esta distribución cumple con los estándares de diseño inclusivo, asegurando
+que el sistema sea accesible para un espectro más amplio de usuarios al evitar el uso de pesos
+excesivamente delgados que comprometerían la legibilidad en dispositivos móviles, de
+acuerdo con los marcos de trabajo de alta densidad informativa (Interaction Design
+Foundation, s.f.).
+
+4.3.2.2.4. Parámetros técnicos de interlineado y espaciado
+
+
+                                                                                                              34
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+El ritmo visual y la fluidez de lectura en la plataforma se optimizan a través de una
+configuración precisa del interlineado (line-height). Para el cuerpo de texto base, se ha
+definido un valor del 150% (equivalente a 24 px para una base de 16 px), cumpliendo con los
+criterios de éxito de las Pautas de accesibilidad para el contenido web (WCAG 2.1), las cuales
+establecen que el espacio entre líneas debe ser al menos 1.5 veces el tamaño de la fuente
+para facilitar el seguimiento visual en usuarios con dificultades cognitivas o de visión baja. Esta
+proporción previene el amontonamiento de caracteres y reduce la fatiga visual durante
+sesiones de uso prolongadas.
+
+En lo que respecta al espaciado entre letras, se han implementado ajustes específicos
+utilizando unidades relativas (em) para mantener la armonía visual de acuerdo con el peso y
+tamaño de la fuente. Para los encabezados de gran escala, como el H1, se aplica un espaciado
+ligeramente negativo (-0.02 em) que compensa el espacio óptico excesivo en tamaños
+mayores, mejorando la cohesión del título. En contraste, para los textos de menor tamaño o
+leyendas (Caption), se utiliza un espaciado positivo (0.01 em) que favorece la legibilidad al
+evitar el empastado de los glifos.
+
+Estas decisiones técnicas se alinean con los principios de la ergonomía visual aplicable a
+pantallas, asegurando que la arquitectura del texto no solo sea estéticamente equilibrada,
+sino funcionalmente inclusiva. Según estudios de Dick & Woloszyn (2023) sobre diseño de
+interfaces, un control riguroso del espacio en blanco dentro y alrededor del bloque de texto
+es determinante para mejorar la velocidad de procesamiento de la información por parte del
+usuario, garantizando que el sistema sea eficiente en entornos de alta densidad de datos.
+
+4.3.2.2.5. Matriz de estilos tipográficos para la implementación
+
+La normalización de los valores tipográficos se consolida en una matriz técnica que permite la
+ejecución precisa del sistema visual en la fase de desarrollo. Esta matriz articula las decisiones
+tomadas respecto a la escala modular Major Third (1.25), la asignación de pesos para la
+jerarquía visual y los parámetros de interlineado y espaciado optimizados. La estructuración
+de estos datos es fundamental para asegurar la integridad de la interfaz, garantizando que
+
+
+                                                                                                              35
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+cada componente mantenga una proporción constante independientemente del dispositivo
+de visualización.
+
+De acuerdo con los estándares de documentación en sistemas de diseño, la definición de estos
+estilos previene inconsistencias visuales y facilita la escalabilidad del producto digital (Brown,
+2016). A continuación, se detallan las especificaciones técnicas que rigen la arquitectura
+textual de la plataforma:
+
+Tabla 4.2. Clasificación jerárquica de tipografia.
+
+
+     Nivel                     Tamaño           Peso         Interlineado      Espaciado
+                  Fuente                                                                       Uso Sugerido
+  Jerárquico                     (px)         (Weight)           (LH)             (LS)
+
+                                                                                                   Títulos
+ H1 - Titular    Poppins         39 px        Bold (700)      1.2 (47 px)       -0.02 em
+                                                                                                 principales
+
+     H2 -                                     Semibold                                        Encabezados de
+                 Poppins         31 px                        1.2 (37 px)       -0.01 em
+   Sección                                      (600)                                              flujo
+
+    H3 -                                      Medium                                           Subtítulos de
+                 Poppin         25 px                         1.3 (32 px)         0 em
+  Subtítulo                                    (500)                                              apoyo
+
+   Body 1 -                                    Regular                                           Párrafos
+                    Inter        20 px                        1.5 (30 px)       0.01 em
+    Base                                        (400)                                           destacados
+
+   Body 2 -                                    Regular                                        Texto general /
+                    Inter        16 px                        1.5 (24 px)       0.01 em
+    Small                                       (400)                                             Forms
+
+                                               Regular                                          Metadatos /
+   Caption          Inter        13 px                        1.4 (18 px)       0.02 em
+                                                (400)                                            Leyendas
+
+   Button /                                   Semibold                                            Acciones
+                    Inter        16 px                            Auto          0.05 em
+     CTA                                        (600)                                            principales
+ Semántico       Informativo (Azul)                #74B9FF            4.6:1            Cumple
+
+Nota: Elaboración propia basada en la escala modular Major Third (1.25) y los estándares de legibilidad
+para interfaces móviles.
+
+
+
+
+4.3.2.3. Iconografía
+
+
+                                                                                                               36
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+La iconografía de Nemi ha sido seleccionada y aplicada bajo un enfoque de minimalismo
+funcional, priorizando la reducción de la carga cognitiva y la mejora de la eficiencia operativa
+en dispositivos móviles. De acuerdo con los principios de usabilidad visual de Schlatter &
+Levinson (2013), la simplicidad de las formas permite una comunicación más rápida al eliminar
+detalles ornamentales que podrían distraer al usuario durante el proceso de contratación. A
+continuación, se detallan los criterios técnicos y normativos que rigen este sistema visual:
+
+Como base del sistema iconográfico, se ha adoptado la librería Feather Icons (Bemis, s.f.). Esta
+elección responde a un estilo de iconicidad estilizada, que según la escala de niveles de
+abstracción visual, se caracteriza por un nivel de detalle bajo pero con una alta claridad
+semántica. Esta configuración garantiza un reconocimiento inmediato de las funciones,
+incluso en condiciones de visualización reducida en pantallas móviles.
+
+Los iconos poseen un grosor de trazo constante de 2px, alineándose con las directrices de
+Material Design (Google, s. f.)sobre la consistencia del peso visual. Este estilo de línea media
+aporta una estética limpia y ligera que complementa la interfaz sin generar ruido visual
+innecesario, favoreciendo el rendimiento visual y la intuición, lo que consolida un entorno
+coherente y profesional para el ecosistema de Nemi.
+
+Para garantizar una interacción precisa en pantallas táctiles, el dimensionamiento de los
+iconos se rige por los estándares internacionales de usabilidad y accesibilidad:
+
+        Área de Interacción (Target Size): Siguiendo las recomendaciones de Material Design
+        (Google, s. f.), los iconos interactivos cuentan con un área táctil de 48x48 px. Este
+        tamaño asegura que el usuario pueda accionar los botones sin errores, optimizando la
+        experiencia en movilidad. Asimismo, se consideran los borradores de la pauta WCAG
+        2.5.8 (Target Size - Nivel AA), manteniendo un tamaño mínimo de 24x24 píxeles CSS
+        para el glifo.
+        Retícula de Diseño: La escala se basa en una cuadrícula de 8 puntos, lo que facilita la
+        alineación y el espaciado armónico dentro del layout.
+
+
+
+                                                                                                              37
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+El sistema se divide en tres niveles jerárquicos para organizar la navegación y la información:
+
+Iconos Principales (Navegación y Acciones Clave): Ubicados en el menú inferior
+(móviles/tabletas) o lateral izquierdo (escritorio). Poseen un tamaño de glifo de 24px centrado
+en un contenedor de 48x48 px.
+
+
+             User: Representa el acceso al perfil y el proceso de log-in.
+
+             Shopping-bag: Gestión de solicitudes de servicio y seguimiento de estados.
+
+             Heart: Acceso directo a la sección de proveedores favoritos.
+
+             Message-circle: Canal de comunicación directa entre el cliente y el taquero tras la
+        aceptación del servicio.
+
+Iconos Secundarios (Funciones de Soporte): Utilizados para funciones complementarias
+mediante una jerarquía visual reducida. El contenedor es de 40x40 px con un glifo de 20 px.
+
+
+             Filter: Para la búsqueda especializada mediante parámetros específicos.
+
+             Search: Herramienta de búsqueda general de taqueros o taquerías.
+
+             Lock: Indicador de seguridad integrado en el campo de contraseña del login.
+
+Iconos Informativos (guía y estado): Su función es puramente orientativa y se integran con el
+tamaño base de la tipografía (16px), empleando un tamaño de 20x20px. Al no ser interactivos
+en su mayoría, no requieren el área táctil de 48px.
+
+
+            Award: Identificación visual de insignias (badges) para taqueros destacados.
+
+                    Check-circle/X-circle: Indicadores de estado de solicitud (aceptada o
+        rechazada).
+
+            Map-pin: Auxiliar visual para la geolocalización y ubicación de servicios en el mapa.
+
+En concordancia con los principios de la psicología del color (Heller, 2004), los iconos cambian
+su estado cromático para informar al usuario sobre su ubicación actual en el sistema. Los
+
+                                                                                                              38
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+iconos activos adoptan el color primario de la marca, mientras que los inactivos mantienen
+una saturación baja, reforzando la percepción de una interfaz intuitiva y organizada.
+
+4.3.2.4. Espaciado y layout
+
+La organización espacial y el sistema de retículas en Nemi se fundamentan en las leyes de la
+Gestalt (Graham, 2008), específicamente en el principio de proximidad, con el propósito de
+estructurar la información de forma lógica y minimizar la carga cognitiva del usuario. Esta
+configuración no responde únicamente a criterios estéticos, sino que funciona como una guía
+jerárquica que optimiza la toma de decisiones y la navegabilidad.
+
+Se ha implementado un sistema de rejilla flexible (soft grid) basado en una unidad base de 8
+puntos (8pt Grid System). Esta metodología, alineada con los estándares de Material Design
+(Google, s. f.), garantiza que todos los componentes de la interfaz (tales como botones,
+tarjetas de proveedores e iconografía) mantengan proporciones armónicas y una escalabilidad
+técnica coherente.
+
+        Márgenes y Medianiles: Para la interfaz móvil, se han establecido márgenes laterales
+        de 16 px y medianiles (gutters) de 8 px. Esta delimitación asegura una "zona de
+        respiración" visual, evitando que el contenido colisione con los bordes físicos del
+        dispositivo y mejorando la concentración del usuario en la zona central de interacción.
+        Contenedores: Las tarjetas de servicio (cards) emplean un espaciado interno (padding)
+        consistente de 16 px. Este espacio separa eficazmente el contenido fotográfico de los
+        datos descriptivos, optimizando la legibilidad y el escaneo rápido de la oferta
+        gastronómica.
+
+La gestión estratégica del espacio en blanco (negative space) es un pilar fundamental para
+prevenir la saturación informativa. Siguiendo los principios de usabilidad visual de Schlatter y
+Levinson (2013), un espaciado adecuado permite que el usuario realice agrupaciones
+mentales de información relacionada —como la asociación entre el nombre de la taquería y
+su valoración— mientras separa claramente elementos de distinta naturaleza semántica,
+como los controles de contratación.
+
+                                                                                                              39
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+        Espaciado vertical: Se han definido incrementos basados en la unidad base (8, 16, 24,
+        32, 40 px) para distanciar los bloques de contenido. Este ritmo visual predecible
+        establece una cadencia de lectura que guía de forma natural la vista del usuario a
+        través del flujo de la aplicación.
+
+El layout se ha estructurado bajo la filosofía Mobile First (Wroblewski, 2011). Se prioriza una
+composición de columna única para dispositivos móviles que maximiza el impacto visual de la
+fotografía gastronómica, factor crítico en la conversión de servicios de alimentos. La
+adaptabilidad del sistema permite que, en resoluciones de escritorio, el diseño se expanda
+hacia una estructura multicolumna, aprovechando el espacio adicional sin comprometer la
+coherencia visual ni la eficiencia operativa.
+
+Para asegurar una experiencia de usuario (UX) accesible y fluida en diversos terminales, se han
+definido los siguientes puntos de interrupción estándar:
+
+        Móvil: < 600 px (estructura de 1 columna).
+        Tableta: 600 px - 1024 px (estructura de 2 columnas).
+        Escritorio: > 1024 px (estructura de 3 o más columnas en el feed de servicios).
+
+Esta rigurosidad en la organización espacial garantiza que Nemi sea una herramienta de alta
+eficiencia, donde la navegación por la oferta de taquizas resulta intuitiva y los elementos
+interactivos se sitúan siempre dentro de zonas de fácil acceso motor para el usuario.
+
+4.3.2.5. Componentes UI
+
+La construcción de la interfaz de Nemi trasciende la creación de pantallas aisladas para
+consolidarse como un Sistema de diseño (Design System) robusto. La arquitectura de
+componentes se fundamenta en la metodología de Diseño Atómico (Atomic Design),
+desarrollada por Frost (2016). Esta estrategia se adoptó para facilitar la escalabilidad y la
+consistencia total del sistema, desglosando la interfaz en unidades discretas que permiten una
+reusabilidad eficiente. La jerarquía establecida ha permitido transitar desde la abstracción
+hacia la tangibilidad de la siguiente manera:
+
+                                                                                                              40
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+        Átomos: Representan los bloques básicos detallados en los fundamentos (colores,
+        tipografía de la familia Outfit e iconos de la librería Feather).
+        Moléculas: Son grupos de átomos que forman unidades funcionales simples. En Nemi,
+        esto incluye campos de entrada de formularios con sus etiquetas de validación y
+        botones de acción primaria ("Solicitar servicio").
+        Organismos: Componentes más complejos que forman secciones de la interfaz, como
+        la tarjeta de proveedor (Service Card). Este organismo combina moléculas de texto,
+        imágenes de eventos y elementos de calificación para ofrecer un resumen de valor
+        inmediato.
+        Plantillas y páginas: Representan la manifestación final de la interfaz, donde los
+        componentes se disponen siguiendo la rejilla de 8 puntos para cumplir con los flujos
+        críticos de geolocalización y gestión de solicitudes.
+
+La herramienta central para la creación y gestión del sistema ha sido Figma. Esta plataforma
+permitió establecer una fuente única de verdad (Single Source of Truth) para todos los Design
+Tokens y la biblioteca de componentes. Mediante esta herramienta:
+
+        Se definieron reglas funcionales estrictas para el comportamiento de los
+        componentes.
+        Se garantizó que la identidad visual gestionada por el equipo de diseño se tradujera
+        con precisión en activos listos para el desarrollo front-end en ReactJS.
+        Se facilitó la documentación rigurosa de los componentes básicos y compuestos,
+        asegurando que cualquier iteración futura mantenga la integridad de la experiencia de
+        usuario.
+
+Cada componente ha sido diseñado bajo los criterios de accesibilidad WCAG 2.1 (W3C, 2018).
+Se prestó especial atención a los controles interactivos:
+
+        Target Size: Los botones y elementos clicables mantienen un área de contacto mínima
+        de 48x48 px, cumpliendo con los estándares de ergonomía para interacción táctil en
+        dispositivos móviles (ISO 9241-210, 2019).
+
+                                                                                                              41
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+        Estados de Componente: Se han definido estados claros (Default, Hover, Active,
+        Disabled) para proporcionar un feedback visual inmediato, respetando la heurística de
+        visibilidad del estado del sistema de Nielsen (1994).
+
+4.3.2.6. Voz y tono
+
+La definición de una voz y un tono consistentes es un componente fundamental de la
+estrategia de contenido (Content Strategy) y en la escritura para la experiencia de usuario (UX
+Writing), disciplinas que aseguran que el lenguaje sea considerado como un activo de diseño
+y una pieza clave para la usabilidad (Halvorson, 2018). A continuación, se establece el marco
+de comunicación de Nemi con el objetivo de homogeneizar el lenguaje y contrarrestar la
+incertidumbre del usuario, estableciendo una personalidad clara y confiable en cada
+interacción del flujo.
+
+La operatividad del sistema de diseño Nemi está regida por directrices que transforman los
+valores esenciales de la marca (confianza, claridad y cercanía) en reglas funcionales para cada
+componente de la interfaz. Estas directrices actúan como un marco ético y funcional que
+moldea tanto el lenguaje como la estructura visual y la lógica de interacción de toda la
+plataforma.
+
+La orientación a la Confianza se manifiesta a través de la transparencia y la visibilidad del
+estado del sistema. Esta regla fundamental exige que Nemi informe activamente al usuario
+sobre el progreso de sus solicitudes y las acciones asíncronas, con el objetivo de evitar la
+incertidumbre. Esta práctica cumple con el principio de usabilidad de mostrar el estatus de la
+operación, esencial para el manejo de transacciones y datos sensibles dentro del marketplace
+(Nielsen, 1994).
+
+La orientación a la Claridad es la directriz que rige la jerarquía visual y la usabilidad del diseño.
+En la interfaz, esta claridad se traduce en una priorización de la información mediante el uso
+adecuado de la tipografía y el layout para que la acción principal por pantalla sea
+inconfundible. Esta directriz combate la ambigüedad y garantiza que la reducción de la carga
+cognitiva sea un objetivo primordial del diseño front-end (Nielsen, 1994).
+
+
+                                                                                                              42
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+La orientación a la Cercanía se traduce en la humanización de la interfaz y la asistencia
+continua. El sistema se comunica de manera empática y guía al usuario a través de cualquier
+punto de fricción. Esta directriz está respaldada por la disciplina del UX Writing y asegura que
+el sistema se comunique con la voz y tono de la marca (Halvorson, 2018), evitando el lenguaje
+técnico o condescendiente para reforzar el carácter social y accesible de la plataforma.
+
+El tono representa la adaptación de la voz a las distintas situaciones emocionales del usuario
+en el flujo crítico. Este tono es muy importante para la microcopia (los textos breves y
+esenciales de la interfaz de usuario) y se diseña para reforzar la seguridad en los puntos de
+fricción del sistema. El uso estratégico de las microinteracciones y el tono es fundamental para
+guiar al usuario a través del flujo y construir una sensación de satisfacción y control (Kendrick,
+2018).
+
+El tono se adapta de la siguiente manera:
+
+         Tono empático y guía: se utiliza para asegurar la visibilidad del estado del sistema en
+         confirmaciones de éxito y progreso, un principio fundamental de la usabilidad que
+         refuerza la confiabilidad de la plataforma. Este refuerzo positivo en la comunicación
+         es esencial para la eficacia de la aplicación (Lu, Qu, & Chen, 2025). Es aplicado en
+         errores de sistema o de entrada de usuario (por ejemplo, geolocalización fallida o
+         rechazo de solicitud). El mensaje es tranquilizador y ofrece pasos concretos para la
+         solución, (regla de mensaje específico: "¡No pudimos ubicarte! Revisa los permisos de
+         tu navegador o ingresa la dirección manualmente").
+
+         Tono positivo y claro: está diseñado para aplicarse en situaciones de error o rechazo.
+         Este enfoque se alinea con la heurística de usabilidad de ayudar al usuario a reconocer,
+         diagnosticar y recuperarse de errores. Al ser guía en estos momentos de frustración,
+         el tono asegura que el usuario mantenga el control y la satisfacción durante el flujo de
+         la plataforma (Kendrick, 2018). Es utilizado en confirmaciones de éxito o progreso
+         (reserva aceptada o pago procesado). El mensaje es directo y celebra el logro,
+         manteniendo la transparencia del estado de la solicitud.
+
+        Tono serio e informativo: se reserva para flujos críticos (como el acuerdo de servicio y
+        la logística del evento), donde la claridad y la formalidad son necesarias para establecer
+        la credibilidad y asegurar que el lenguaje refuerce la seriedad del servicio contratado.
+
+4.3.3. Justificación técnica
+
+La arquitectura visual y funcional de Nemi no responde únicamente a criterios estéticos, sino
+que se fundamenta en una validación técnica orientada a garantizar la eficiencia operativa y
+la satisfacción del usuario (ISO 9241-210, 2019). Esta justificación se estructura bajo tres ejes
+normativos: las heurísticas de usabilidad, los estándares de accesibilidad y la ergonomía de la
+interacción.
+
+El sistema integra de forma nativa los principios de Nielsen (1994), asegurando una curva de
+aprendizaje mínima tanto para el cliente como para el proveedor:
+
+        Visibilidad del estado del sistema: Mediante el uso de estados en los componentes y
+        un tono situacional claro, la interfaz informa permanentemente sobre el progreso de
+        las solicitudes de servicio, eliminando la incertidumbre en procesos asíncronos.
+        Consistencia y estándares: La adopción del Atomic Design (Frost, 2016) y la unidad base
+        de 8 puntos asegura que los patrones de interacción sean predecibles, fortaleciendo
+        la confianza del usuario al reconocer comportamientos uniformes en toda la
+        plataforma.
+
+La plataforma se adhiere a las Pautas de Accesibilidad para el Contenido Web WCAG 2.1 (W3C,
+2018), enfocándose en los siguientes criterios de cumplimiento:
+
+        Operabilidad y Target Size: Cada elemento interactivo respeta el área táctil mínima de
+        48x48 px, garantizando que la navegación sea accesible para usuarios con diversas
+        capacidades motrices o en situaciones de movilidad extrema, de acuerdo con la norma
+        ISO 9241-210 (2019).
+
+
+
+
+                                                                                                              44
+    Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                                Diseño y Desarrollo de la Aplicación Web Nemi
+
+          Comprensión y UX Writing: La estrategia de contenido y la microcopia (Halvorson &
+          Rach, 2012; Kendrick, 2018) actúan como facilitadores cognitivos, asegurando que el
+          lenguaje sea un puente y no una barrera para la contratación del servicio.
+
+La justificación técnica del layout y la iconografía estilizada reside en la optimización del
+procesamiento visual. Al seguir una filosofía Mobile First (Wroblewski, 2011) y aplicar los
+principios de usabilidad visual de Schlatter y Levinson (2013), Nemi logra una jerarquía clara
+donde la acción principal es siempre evidente. Esta estructura técnica reduce el esfuerzo
+mental necesario para completar un flujo, transformando una necesidad social informal en
+una experiencia digital profesional y segura.
+
+4.3.4. Ejemplos visuales y especificaciones
+
+La materialización de la propuesta de valor de Nemi se consolida en la interfaz de alta
+fidelidad, donde los requisitos funcionales y los fundamentos del sistema de diseño convergen
+en una experiencia de usuario tangible. Esta sección presenta la ejecución final de las pantallas
+críticas del sistema, demostrando cómo la arquitectura de la información y la jerarquía visual
+se articulan para resolver los problemas de informalidad y desconfianza detectados en el
+sector.
+
+A través de la integración de los componentes atómicos y las reglas de composición espacial,
+se han construido flujos de navegación que priorizan la claridad operativa y el cumplimiento
+de los estándares de accesibilidad WCAG 2.1. Los ejemplos presentados a continuación no
+solo ilustran la estética de la plataforma, sino que detallan las especificaciones técnicas que
+garantizan una interacción consistente y eficiente en dispositivos móviles, asegurando que
+cada punto de contacto refuerce la identidad confiable y cercana de la marca
+
+LINK A WIREFRAME
+
+NOTA: Hasta el momento se documentó el design system de manera académica y se presenta
+en un wireframe general de la aplicacion Nemi. Debido a que se trata de un trabajo en equipo,
+se debe homologar cada una de las partes de la arquitectura: colorimetría, tipografía,
+
+                                                                                                              45
+   Cruz Blancas, Yéssika Nayeli / Mateo Hernandez, Hugo / Orta Carrizales, Cristian Axel / Rojas Serrano, Jessica
+                                                               Diseño y Desarrollo de la Aplicación Web Nemi
+
+iconografía, sistema reticular, etc., para lograr una documentación acorde al proyecto. Por lo
+tanto, en la siguiente entrega se sumará toda la parte gráfica complteta que compone la App
+Nemi.

@@ -1,0 +1,29 @@
+* e945592 feat: improve login UI with validation
+*   6085002 Merge pull request #4 from rosj1403/feature/client-home
+|\  
+| | * f59cfb1 docs: add implementation details for TFM
+| | * 79a1927 docs: add progress documentation for TFM
+| |/  
+| * e1559a4 feat: add ClientHomeNew with search and filters
+|/  
+*   1101a55 Merge pull request #3 from rosj1403/feature/component-showcase
+|\  
+| * 897a4c2 fix: recreate ComponentShowcase with correct syntax
+| * 60e9e6b refactor: mejorar ComponentShowcase con mejor jerarquía, espaciado y documentación
+| * 9fb777d feat: agregar página de demostración ComponentShowcase
+|/  
+*   4fdcc5a Merge: agregar componentes ServiceCard y RequestStatus
+|\  
+| * 4748942 feat: crear componente RequestStatus con badges de estado (pendiente, aceptada, rechazada, completada)
+| * b9887df feat: crear componente ServiceCard con imagen, rating, distancia y precio
+* |   b90a095 Merge pull request #1 from rosj1403/feature/hugo-sistema-diseño
+|\ \  
+| |/  
+|/|   
+| * ec05b63 feat: crear componente ButtonPrimary reutilizable con variantes y accesibilidad
+| * 17b69f1 feat: agregar design tokens del sistema Nemi (colores, tipografía, espaciado)
+|/  
+* 7fea950 Actualización README
+* 5219ee3 Estructura base del proyecto React Nemi
+* 2571a51 Estructura base del proyecto React AppNemi
+* 22e7322 Estructura base - Nemi

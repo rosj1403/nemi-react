@@ -24,16 +24,16 @@ npm run dev
 - `/recover` Recuperación (mock)
 
 ### Cliente
-- `/c/home` Exploración (búsqueda, filtros, placeholder de mapa)
+- `/home` Exploración (búsqueda, filtros, placeholder de mapa)
 - `/taquero/:id` Perfil de proveedor
-- `/c/request/:providerId` Formulario de solicitud
-- `/c/requests` Bandeja de solicitudes
-- `/c/favorites` Favoritos
+- `/request/:providerId` Formulario de solicitud
+- `/requests` Bandeja de solicitudes
+- `/favorites` Favoritos
 
 ### Proveedor
-- `/p/dashboard` Tablero
-- `/p/orders` Administrador de pedidos (Aceptar/Rechazar + motivo)
-- `/p/business` Gestión de negocio
+- `/dashboard` Tablero
+- `/orders` Administrador de pedidos (Aceptar/Rechazar + motivo)
+- `/business` Gestión de negocio
 
 ## Mock API
 Persistencia en `localStorage`.

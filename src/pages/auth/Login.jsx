@@ -257,7 +257,7 @@ export default function Login() {
         localStorage.removeItem('nemiRememberMe')
       }
       const { user } = await login({ email, password })
-      nav(user.role === 'client' ? '/c/home' : '/p/dashboard', { replace: true })
+      nav(user.role === 'client' ? '/home' : '/dashboard', { replace: true })
     } catch (err) {
       setError(err?.message || 'No se pudo iniciar sesión')
     } finally {
@@ -269,17 +269,17 @@ export default function Login() {
     <Page>
       <Container>
         <Card>
-          <Brand>🍔 Nemi</Brand>
-          <Title>Iniciar sesión</Title>
-          <Subtitle>Accede para gestionar tus pedidos y servicios.</Subtitle>
+          <Brand>NEMI</Brand>
+          <Title>Inicia Sesión</Title>
+          <Subtitle>Accede a tu cuenta de NEMI</Subtitle>
 
           <Form onSubmit={onSubmit} aria-label="Formulario de inicio de sesión">
             <Field>
-              <Label htmlFor="email">Correo electrónico</Label>
+              <Label htmlFor="email">Correo Electrónico</Label>
               <Input
                 id="email"
                 type="email"
-                placeholder="tucorreo@email.com"
+                placeholder="tu@email.com"
                 autoComplete="email"
                 value={email}
                 onChange={handleEmailChange}
@@ -310,37 +310,29 @@ export default function Login() {
                   {showPassword ? 'Ocultar' : 'Mostrar'}
                 </ToggleButton>
               </PasswordRow>
-              <HelperText>Mínimo 6 caracteres.</HelperText>
               {touched.password && fieldErrors.password ? (
                 <FieldError role="alert">{fieldErrors.password}</FieldError>
               ) : null}
             </Field>
 
-            <Row>
-              <CheckboxLabel>
-                <input
-                  type="checkbox"
-                  checked={rememberMe}
-                  onChange={e => setRememberMe(e.target.checked)}
-                />
-                Recuérdame
-              </CheckboxLabel>
+            <Row style={{ justifyContent: 'flex-end' }}>
               <LinkButton to="/recover">¿Olvidaste tu contraseña?</LinkButton>
             </Row>
 
             {error ? <GlobalError role="alert">{error}</GlobalError> : null}
 
             <ButtonPrimary type="submit" fullWidth disabled={loading}>
-              {loading ? 'Entrando…' : 'Entrar'}
+              {loading ? 'Iniciando sesión…' : 'Iniciar Sesión'}
             </ButtonPrimary>
           </Form>
 
           <Divider />
           <FooterLinks>
             <span>¿No tienes cuenta?</span>
-            <LinkButton to="/register/client">Registro Cliente</LinkButton>
-            <span>·</span>
-            <LinkButton to="/register/provider">Registro Proveedor</LinkButton>
+          </FooterLinks>
+          <FooterLinks style={{ flexDirection: 'column', gap: '8px', marginTop: '8px' }}>
+            <LinkButton to="/register/client">Regístrate como Cliente</LinkButton>
+            <LinkButton to="/register/provider">Regístrate como Proveedor</LinkButton>
           </FooterLinks>
         </Card>
       </Container>
